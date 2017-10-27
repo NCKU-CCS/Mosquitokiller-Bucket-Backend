@@ -1,4 +1,4 @@
-import { reducers as places } from './places'
+import { default as places } from './places'
 
 export {
   places
