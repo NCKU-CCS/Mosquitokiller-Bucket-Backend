@@ -8,8 +8,7 @@ import * as reducers from './redux'
 
 import middleWare from './middlewares'
 
-// import './index.css'
-import App from './components/App'
+import App from './containers/App'
 import registerServiceWorker from './registerServiceWorker'
 
 const reducer = combineReducers({

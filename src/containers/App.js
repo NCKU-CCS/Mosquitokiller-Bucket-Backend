@@ -6,8 +6,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 // Components
-import List from './ItemList'
-import Item from './Item'
+import List from '../components/ItemList'
+import Item from '../components/Item'
 
 const onFetchLoadItems =  actions.onFetchLoadItems
 
