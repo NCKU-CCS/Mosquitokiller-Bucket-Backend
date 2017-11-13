@@ -2,13 +2,13 @@
 // Actions
 
 export const types = {
-  LOAD: 'lamps/LOAD',
-  CREATE: 'lamps/CREATE',
-  UPDATE: 'lamps/UPDATE',
-  REMOVE: 'lamps/REMOVE',
-  FETCH_LOAD: 'lamps/FETCH_LOAD',
-  FETCH_ADD: 'lamps/FETCH_ADD',
-  FETCH_UPDATE: 'lamps/FETCH_UPDATE'
+  LOAD: 'places/LOAD',
+  CREATE: 'places/CREATE',
+  UPDATE: 'places/UPDATE',
+  REMOVE: 'places/REMOVE',
+  FETCH_LOAD: 'places/FETCH_LOAD',
+  FETCH_ADD: 'places/FETCH_ADD',
+  FETCH_UPDATE: 'places/FETCH_UPDATE'
 }
 
 // Action Creators

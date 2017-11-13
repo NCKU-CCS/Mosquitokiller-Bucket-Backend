@@ -1,8 +1,8 @@
 
-import actionTypes from '../redux/places.js'
+import {types} from '../redux/places.js'
 
 const fetchItems = (store) => (next) => (action) => {
-  if (action.type !== actionTypes.FETCH_LOAD) return next(action)
+  if (action.type !== types.FETCH_LOAD) return next(action)
 
   fetch('http://localhost:3001/apis/places', {
     method: 'GET'
