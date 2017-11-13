@@ -5,8 +5,8 @@ import { actions } from '../redux/places'
 
 // ({onItemEdit, onFetchUpdateItem} = actions)
 
-const Item = ({id, name}) => (
-  <li>{name}</li>
+const Item = ({id, content}) => (
+  <li>{content.place_name}</li>
 )
 
 export default Item

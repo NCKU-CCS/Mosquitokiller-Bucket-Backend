@@ -30,7 +30,7 @@ class App extends Component {
                 <Item
                   key={item.place_id}
                   id={item.place_id}
-                  name={item.place_name}
+                  content={item}
                 />
               )
             })
