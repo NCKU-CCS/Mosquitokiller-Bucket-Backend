@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+// import { bindActionCreators } from 'redux'
+// import { connect } from 'react-redux'
 
-const itemList = ({children}) => {
+const itemList = ({name, children}) => {
   return (
     <div>
-      <h2>Items</h2>
+      <h2>{name}</h2>
       <ul className='list-group'>
         {children}
       </ul>

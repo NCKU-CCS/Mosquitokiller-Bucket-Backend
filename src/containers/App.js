@@ -8,8 +8,18 @@ import { connect } from 'react-redux'
 import List from '../components/ItemList'
 import Item from '../components//Item/Item'
 import ItemEdit from '../components/Item/ItemEditForm'
+import ItemAdd from '../components/Item/ItemAddForm'
 
 const onFetchLoadItems =  actions.onFetchLoadItems
+
+const ROUTE = 'Place'
+
+const postModel = [
+  ['place_name', 'string'],
+  ['place_address', 'string'],
+  ['place_contact_person', 'string'],
+  ['place_phone', 'string']
+]
 
 class App extends Component {
   componentDidMount () {
@@ -23,7 +33,8 @@ class App extends Component {
         <header className='App-header'>
           <h1 className='App-title'>Welcome</h1>
         </header>
-        <List>
+        <ItemAdd form={postModel}/>
+        <List name={ROUTE}>
           {
             itemList.map((item, index) => {
               return (

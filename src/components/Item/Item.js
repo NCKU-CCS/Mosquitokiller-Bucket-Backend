@@ -10,8 +10,7 @@ const onItemEdit = actions.onItemEdit
 
 const Column = styled.li.attrs({
   align: props => props.type === 'string' ? 'left' : 'right'
-})
-`
+})`
   list-style: none;  
   padding: 0.5rem 1rem;
   min-width: 7rem;

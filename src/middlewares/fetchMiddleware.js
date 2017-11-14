@@ -1,4 +1,4 @@
-import {types, actions} from '../redux/places.js'
+import {types} from '../redux/places.js'
 
 const BASE = 'http://localhost:3001/apis'
 
@@ -36,6 +36,38 @@ export default class APIController {
   
 
   //
+  // POST NEW Item
+  //
+  fetchAddItem = (store) => (next) => (action) => {
+    if (action.type !== types.FETCH_ADD) return next(action)
+ 
+    const payload = Object.keys(action.payload).reduce((prev, current) => {
+      prev[current] = action.payload[current].value || null
+      return prev
+    }, {})
+
+    fetch(`${BASE}${this.ROUTE}`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify(payload)
+    })
+    .then((response) => {
+      if (!response.ok) throw new Error(response.statusText)
+      return response.json()
+    })
+    .then((item) => {
+      const stateItem = Object.assign({}, item, { isEditing: false })
+      return action.cb(stateItem, store.dispatch)
+    })
+    .catch((error) => { throw new Error(error.message) })
+  }
+
+
+  //
   // Update Item
   //
   fetchUpdateItem = (store) => (next) => (action) => {
@@ -65,6 +97,6 @@ export default class APIController {
       return action.cb(stateItem, store.dispatch)
     })
     .catch((error) => { throw new Error(error.message) })
-  
   }
+
 }
