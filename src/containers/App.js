@@ -6,8 +6,8 @@ import { connect } from 'react-redux'
 
 // Components
 import List from '../components/ItemList'
-import Item from '../components/Item'
-import ItemEdit from '../components/ItemEditForm'
+import Item from '../components//Item/Item'
+import ItemEdit from '../components/Item/ItemEditForm'
 
 const onFetchLoadItems =  actions.onFetchLoadItems
 

@@ -21,8 +21,16 @@ const fetchItems = (store) => (next) => (action) => {
   .catch((error) => { throw new Error(error.message) })
 }
 
+const fetchUpdateItem = (store) => (next) => (action) => {
+  if (action.type !== types.FETCH_UPDATE) return next(action)
+
+
+}
+
+
 export default class PlacesController {
   constructor () {
     this.fetchItems = fetchItems.bind(this)
+    this.fetchUpdateItem = fetchUpdateItem.bind(this)
   }
 }
