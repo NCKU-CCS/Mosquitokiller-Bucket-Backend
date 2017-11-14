@@ -1,13 +1,8 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { actions } from '../../redux/places'
 import styled from 'styled-components'
 import { Row, FuncColumn, FuncButton } from './Table'
 
 import './Item.css'
-
-const onFetchAddItem = actions.onFetchAddItem
 
 const ItemAddForm = ({form, onFetchAddItem}) => {
   let formValue = {}
@@ -37,7 +32,4 @@ const ItemAddForm = ({form, onFetchAddItem}) => {
   )
 }
 
-const mapDispatchToProps= (dispatch) => (
-  bindActionCreators({onFetchAddItem}, dispatch)
-)
-export default connect(null, mapDispatchToProps)(ItemAddForm)
+export default ItemAddForm

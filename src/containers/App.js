@@ -10,7 +10,10 @@ import Item from '../components//Item/Item'
 import ItemEdit from '../components/Item/ItemEditForm'
 import ItemAdd from '../components/Item/ItemAddForm'
 
-const onFetchLoadItems =  actions.onFetchLoadItems
+const {
+  onFetchLoadItems, onFetchUpdateItem, 
+  onFetchAddItem, onItemEdit
+} = actions
 
 const ROUTE = 'Place'
 
@@ -33,7 +36,10 @@ class App extends Component {
         <header className='App-header'>
           <h1 className='App-title'>Welcome</h1>
         </header>
-        <ItemAdd form={postModel}/>
+        <ItemAdd 
+          form={postModel}
+          onFetchAddItem={this.props.onFetchAddItem}
+        />
         <List name={ROUTE}>
           {
             itemList.map((item, index) => {
@@ -42,10 +48,12 @@ class App extends Component {
                   ? <ItemEdit
                       key={index}
                       content={item}
+                      onFetchUpdateItem={this.props.onFetchUpdateItem}
                     />
                   : <Item
                       key={index}
                       content={item}
+                      onItemEdit={this.props.onItemEdit}
                     />
               )
             })
@@ -61,7 +69,9 @@ const mapStateToProps = store => ({
  })
 
  const mapDispatchToProps = (dispatch) =>(
-   bindActionCreators({ onFetchLoadItems }, dispatch)
+   bindActionCreators({
+     onFetchLoadItems, onFetchUpdateItem, onFetchAddItem, onItemEdit
+    }, dispatch)
  )
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

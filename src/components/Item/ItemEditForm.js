@@ -1,13 +1,8 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { actions } from '../../redux/places'
 import styled from 'styled-components'
 import { Row, FuncColumn, FuncButton } from './Table'
 
 import './Item.css'
-
-const onFetchUpdateItem = actions.onFetchUpdateItem
 
 // Need Change
 const itemId = 'place_id'
@@ -43,7 +38,4 @@ const ItemEdit = ({id, content, onFetchUpdateItem}) => {
     </Row>
 )}
 
-const mapDispatchToProps= (dispatch) => (
-  bindActionCreators({onFetchUpdateItem}, dispatch)
-)
-export default connect(null, mapDispatchToProps)(ItemEdit)
+export default ItemEdit

@@ -1,12 +1,7 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { actions } from '../../redux/places'
 import styled from 'styled-components'
 
 import { Row, FuncColumn, FuncButton } from './Table'
-
-const onItemEdit = actions.onItemEdit
 
 const Column = styled.li.attrs({
   align: props => props.type === 'string' ? 'left' : 'right'
@@ -39,8 +34,4 @@ const Item = ({id, content, onItemEdit}) => (
   </Row>
 )
 
-
-const mapDispatchToProps= (dispatch) => (
-  bindActionCreators({onItemEdit}, dispatch)
-)
-export default connect(null, mapDispatchToProps)(Item)
+export default Item
