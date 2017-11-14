@@ -5,12 +5,9 @@ import { actions } from '../redux/places'
 
 import styled from 'styled-components'
 
-const onItemEdit = actions.onItemEdit
+import { Row, FuncColumn, FuncButton } from './Table'
 
-const Row = styled.ul`
-  display: flex;
-  padding: 0;
-`
+const onItemEdit = actions.onItemEdit
 
 const Column = styled.li.attrs({
   align: props => props.type === 'string' ? 'left' : 'right'
@@ -24,25 +21,6 @@ const Column = styled.li.attrs({
   text-align: ${props => props.align}
 `
 
-const FuncColumn = styled.li`
-  list-style: none; 
-  display:flex;
-  align-items: center;
-`
-
-const EditButton = styled.button`
-  padding: 1px 15px;
-  cursor: pointer;
-  border-radius: 10px;
-  border: 1px solid gray;
-  background-color: #fff;
-  &:hover {
-    color: rgba(255,255,255,0.9);
-    background-color: #51e6a6;
-    border: 1px solid #51e6a6;
-  } 
-`
-
 const Item = ({id, content, onItemEdit}) => (
   <Row>
     {
@@ -53,12 +31,12 @@ const Item = ({id, content, onItemEdit}) => (
       })
     }
     <FuncColumn>
-      <EditButton onClick={()=>{
+      <FuncButton onClick={()=>{
         onItemEdit({
           ...content,
           isEditing: true
         })
-      }}>Edit</EditButton>
+      }}>Edit</FuncButton>
     </FuncColumn>
   </Row>
 )
