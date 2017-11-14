@@ -9,37 +9,42 @@ import Item from '../components//Item/Item'
 import ItemEdit from '../components/Item/ItemEditForm'
 import ItemAdd from '../components/Item/ItemAddForm'
 
+// Redux Actions
 import ReduxMethod from '../redux/reduxMethod'
-const places = new ReduxMethod('places')
+
+const ROUTE = 'places'
+const items = new ReduxMethod(ROUTE)
 
 const {
   onFetchLoadItems, onFetchUpdateItem, 
   onFetchAddItem, onItemEdit
-} = places.actions
-
-const ROUTE = 'place'
-
-const postModel = [
-  ['place_name', 'string'],
-  ['place_address', 'string'],
-  ['place_contact_person', 'string'],
-  ['place_phone', 'string']
-]
+} = items.actions
 
 class App extends Component {
+  constructor (ROUTE, itemId, nonEditList, postModel) {
+    super()
+    this.itemId = 'place_id'
+    this.nonEditList = ['place_id', 'created_at', 'updated_at', 'isEditing']
+    this.postModel = [
+      ['place_name', 'string'],
+      ['place_address', 'string'],
+      ['place_contact_person', 'string'],
+      ['place_phone', 'string']
+    ]
+  }
   componentDidMount () {
     this.props.onFetchLoadItems()
   }
 
   render () {
-    let itemList = this.props.places
+    let itemList = this.props[ROUTE]
     return (
       <div className='App'>
         <header className='App-header'>
           <h1 className='App-title'>Dengue fever</h1>
         </header>
         <ItemAdd 
-          form={postModel}
+          form={this.postModel}
           onFetchAddItem={this.props.onFetchAddItem}
         />
         <List name={ROUTE}>
@@ -48,7 +53,9 @@ class App extends Component {
               return (
                 (item.isEditing)
                   ? <ItemEdit
+                      itemId={this.itemId}
                       key={index}
+                      nonEditList={this.nonEditList}
                       content={item}
                       onFetchUpdateItem={this.props.onFetchUpdateItem}
                     />
@@ -67,7 +74,7 @@ class App extends Component {
 }
 
 const mapStateToProps = store => ({
-  places: store.places,
+  [ROUTE]: store[ROUTE],
  })
 
  const mapDispatchToProps = (dispatch) =>(

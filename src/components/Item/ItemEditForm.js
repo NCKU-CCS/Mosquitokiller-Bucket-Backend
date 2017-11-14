@@ -4,16 +4,12 @@ import { Row, FuncColumn, FuncButton } from './Table'
 
 import './Item.css'
 
-// Need Change
-const itemId = 'place_id'
-const nonEditList = ['place_id', 'created_at', 'updated_at', 'isEditing']
+const ItemEdit = ({itemId, content, nonEditList, onFetchUpdateItem}) => {
 
+  const editAvailable = (value) => {
+    if (!nonEditList.includes(value[0])) return value
+  }
 
-const editAvailable = (value) => {
-  if (!nonEditList.includes(value[0])) return value
-}
-
-const ItemEdit = ({id, content, onFetchUpdateItem}) => {
   let formValue = {}
   return (
     <Row>
