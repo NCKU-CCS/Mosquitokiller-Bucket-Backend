@@ -7,7 +7,9 @@ const itemList = ({children}) => {
   return (
     <div>
       <h2>Items</h2>
-      <ul className='list-group'>{children}</ul>
+      <ul className='list-group'>
+        {children}
+      </ul>
     </div>
   )
 }

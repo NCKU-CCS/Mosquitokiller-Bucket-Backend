@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './App.css'
 
 import { actions } from '../redux/places'
 import { bindActionCreators } from 'redux'
@@ -8,6 +7,7 @@ import { connect } from 'react-redux'
 // Components
 import List from '../components/ItemList'
 import Item from '../components/Item'
+import ItemEdit from '../components/ItemEditForm'
 
 const onFetchLoadItems =  actions.onFetchLoadItems
 
@@ -27,11 +27,15 @@ class App extends Component {
           {
             itemList.map((item, index) => {
               return (
-                <Item
-                  key={item.place_id}
-                  id={item.place_id}
-                  content={item}
-                />
+                (item.isEditing)
+                  ? <ItemEdit
+                      key={index}
+                      content={item}
+                    />
+                  : <Item
+                      key={index}
+                      content={item}
+                    />
               )
             })
           }
