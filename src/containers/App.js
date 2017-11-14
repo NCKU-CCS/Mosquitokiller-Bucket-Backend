@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-import { actions } from '../redux/places'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -10,12 +9,15 @@ import Item from '../components//Item/Item'
 import ItemEdit from '../components/Item/ItemEditForm'
 import ItemAdd from '../components/Item/ItemAddForm'
 
+import ReduxMethod from '../redux/reduxMethod'
+const places = new ReduxMethod('places')
+
 const {
   onFetchLoadItems, onFetchUpdateItem, 
   onFetchAddItem, onItemEdit
-} = actions
+} = places.actions
 
-const ROUTE = 'Place'
+const ROUTE = 'place'
 
 const postModel = [
   ['place_name', 'string'],
@@ -34,7 +36,7 @@ class App extends Component {
     return (
       <div className='App'>
         <header className='App-header'>
-          <h1 className='App-title'>Welcome</h1>
+          <h1 className='App-title'>Dengue fever</h1>
         </header>
         <ItemAdd 
           form={postModel}

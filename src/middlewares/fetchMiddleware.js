@@ -1,21 +1,20 @@
-import {types} from '../redux/places.js'
-
 const BASE = 'http://localhost:3001/apis'
 
-
 export default class APIController {
-  constructor (ROUTE, ID) {
+  constructor (ROUTE, ID, types) {
     this.ROUTE = ROUTE
     this.ID = ID
+    this.types = types
     this.fetchItems = this.fetchItems.bind(this)
     this.fetchUpdateItem = this.fetchUpdateItem.bind(this)
+    this.fetchAddItem = this.fetchAddItem.bind(this)
   }
 
   //
   // Get All Items
   //
   fetchItems = (store) => (next) => (action) => {
-    if (action.type !== types.FETCH_LOAD) return next(action)
+    if (action.type !== this.types.FETCH_LOAD) return next(action)
   
     fetch(`${BASE}${this.ROUTE}`, {
       method: 'GET'
@@ -39,7 +38,7 @@ export default class APIController {
   // POST NEW Item
   //
   fetchAddItem = (store) => (next) => (action) => {
-    if (action.type !== types.FETCH_ADD) return next(action)
+    if (action.type !== this.types.FETCH_ADD) return next(action)
  
     const payload = Object.keys(action.payload).reduce((prev, current) => {
       prev[current] = action.payload[current].value || null
@@ -71,7 +70,7 @@ export default class APIController {
   // Update Item
   //
   fetchUpdateItem = (store) => (next) => (action) => {
-    if (action.type !== types.FETCH_UPDATE) return next(action)
+    if (action.type !== this.types.FETCH_UPDATE) return next(action)
     
     // get value from input element
     const payload = Object.keys(action.payload).reduce((prev, current) => {
