@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 
 import reducers from './redux'
 
-import middleWare from './middlewares'
+import middleWares from './middlewares'
 
 // Router
 import createHistory from 'history/createBrowserHistory'
@@ -19,6 +19,6 @@ const reducer = combineReducers({
 
 const store = createStore(reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(...middleWare, routeMiddleware))
+  applyMiddleware(...middleWares, routeMiddleware))
 
 export default store

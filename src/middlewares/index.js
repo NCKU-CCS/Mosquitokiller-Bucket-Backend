@@ -1,18 +1,16 @@
 import { types } from '../redux'
 import APIController from './fetchMiddleware'
 
-// PlacesMiddleware
-const PlaceController = new APIController('/places/', 'place_id', types.places)
-const places = [PlaceController.fetchItems, PlaceController.fetchAddItem, PlaceController.fetchUpdateItem]
+const getMiddleWares = (route, id, types) => {
+  const controller = new APIController(route, id, types)
+  return [controller.fetchItems, controller.fetchAddItem, controller.fetchUpdateItem]
+}
 
-// LampsMiddleware
-const lampController = new APIController('/lamps/', 'lamp_id', types.lamps)
-const lamps = [lampController.fetchItems, lampController.fetchAddItem, lampController.fetchUpdateItem]
+// MiddleWares
+const places = getMiddleWares('/places/', 'place_id', types.places)
+const lamps = getMiddleWares('/lamps/', 'lamp_id', types.lamps)
+const mccs = getMiddleWares('/mcc/', 'mcc_id', types.mcc)
 
-// MccMiddleware
-const mccController = new APIController('/mcc/', 'mcc_id', types.mcc)
-const mccs = [mccController.fetchItems, mccController.fetchAddItem, mccController.fetchUpdateItem]
+const middleWares = [...places, ...lamps, ...mccs]
 
-const middleWare = [...places, ...lamps, ...mccs]
-
-export default middleWare
+export default middleWares
