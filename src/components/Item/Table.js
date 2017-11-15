@@ -3,12 +3,15 @@ import styled from 'styled-components'
 export const Row = styled.ul`
   display: flex;
   padding: 0;
+  width: 80vw;
+  justify-content: center;
 `
 
 export const FuncColumn = styled.li`
   list-style: none; 
   display:flex;
   align-items: center;
+  justify-content: center;
 `
 
 export const FuncButton = styled.button`

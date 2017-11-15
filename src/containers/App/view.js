@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 // Components
+import Header from '../../components/Header'
 import List from '../../components/ItemList'
 import Item from '../../components/Item/Item'
 import ItemEdit from '../../components/Item/ItemEditForm'
@@ -22,9 +23,7 @@ class App extends Component {
     let itemList = this.props.itemList
     return (
       <div className='App'>
-        <header className='App-header'>
-          <h1 className='App-title'>Dengue fever</h1>
-        </header>
+        <Header/>
         <ItemAdd 
           form={this.postModel}
           onFetchAddItem={this.props.onFetchAddItem}
