@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 
-import * as reducers from './redux'
+import reducers from './redux'
 
 import middleWare from './middlewares'
 

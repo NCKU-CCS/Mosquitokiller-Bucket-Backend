@@ -1,3 +1,4 @@
+import { actions } from '../redux'
 import ContainerGenerator from './containerGenerator'
 
 const placeProps = {
@@ -31,10 +32,9 @@ const mccProps = {
   ]
 }
 
-
-const Places = ContainerGenerator('places', placeProps)
-export const Lamps = ContainerGenerator('lamps', lampProps)
-export const Mccs = ContainerGenerator('mcc', mccProps)
+const Places = ContainerGenerator('places', placeProps, actions.places)
+export const Lamps = ContainerGenerator('lamps', lampProps, actions.lamps)
+export const Mccs = ContainerGenerator('mcc', mccProps, actions.mcc)
 
 
 export default Places

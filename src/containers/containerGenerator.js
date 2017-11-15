@@ -2,19 +2,16 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-// Redux Actions
-import ReduxMethod from '../redux/reduxMethod'
 
 import App from './App/view'
 
-export default (route, props) => {
-  const items = new ReduxMethod(route)
+export default (route, props, actions) => {
   const mapStateToProps = (store) => ({
     itemList: store[route],
     ...props
   })
   const mapDispatchToProps = (dispatch) =>(
-    bindActionCreators(items.actions, dispatch)
+    bindActionCreators(actions, dispatch)
   )
   return connect(mapStateToProps, mapDispatchToProps)(App)
 }
