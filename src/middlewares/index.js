@@ -13,6 +13,12 @@ const lampsTypes = lampRedux.types
 const lampController = new APIController('/lamps/', 'lamp_id', lampsTypes)
 const lamps = [lampController.fetchItems, lampController.fetchAddItem, lampController.fetchUpdateItem]
 
-const middleWare = [...places, ...lamps]
+// MccMiddleware
+const mccRedux = new ReduxMethod('mcc')
+const mccsTypes = mccRedux.types
+const mccController = new APIController('/mcc/', 'mcc_id', mccsTypes)
+const mccs = [mccController.fetchItems, mccController.fetchAddItem, mccController.fetchUpdateItem]
+
+const middleWare = [...places, ...lamps, ...mccs]
 
 export default middleWare

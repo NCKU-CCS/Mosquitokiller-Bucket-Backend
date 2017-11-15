@@ -23,8 +23,18 @@ const lampProps = {
   ]
 }
 
+const mccProps = {
+  itemId: 'mcc_id',
+  nonEditList: ['mcc_id', 'mcc_keys', 'mcc_points', 'mcc_center', 'rule_id', 'created_at', 'updated_at', 'isEditing'],
+  postModel: [
+    ['mcc_center', 'string']
+  ]
+}
+
+
 const Places = ContainerGenerator('places', placeProps)
 export const Lamps = ContainerGenerator('lamps', lampProps)
+export const Mccs = ContainerGenerator('mcc', mccProps)
 
 
 export default Places

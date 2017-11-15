@@ -33,6 +33,7 @@ export default () => {
       <Nav>
           <NavItem><StyledLink to="/">Places</StyledLink></NavItem>
           <NavItem><StyledLink to="/lamps">Lamps</StyledLink></NavItem>
+          <NavItem><StyledLink to="/mccs">Mcc</StyledLink></NavItem>
       </Nav>
     </Header>
   )

@@ -6,6 +6,9 @@ const places = placeRedux.reducer
 const lampRedux = new ReduxMethod('lamps')
 const lamps = lampRedux.reducer
 
+const mccRedux = new ReduxMethod('mcc')
+const mcc = mccRedux.reducer
+
 export {
-  places, lamps
+  places, lamps, mcc
 }

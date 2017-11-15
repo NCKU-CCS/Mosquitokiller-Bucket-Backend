@@ -10,7 +10,7 @@ import { Route } from 'react-router-dom'
 import { ConnectedRouter } from 'react-router-redux'
 
 // page Components
-import Places, { Lamps } from './containers/Page'
+import Places, { Lamps, Mccs } from './containers/Page'
 import registerServiceWorker from './registerServiceWorker'
 
 // Global CSS
@@ -30,6 +30,7 @@ ReactDOM.render(
       <div>
         <Route exact path="/" component={Places}/>
         <Route path="/lamps" component={Lamps}/>
+        <Route path="/mccs" component={Mccs}/>
       </div>
     </ConnectedRouter>
   </Provider>,
