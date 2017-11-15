@@ -21,8 +21,8 @@ const {
 } = items.actions
 
 class App extends Component {
-  constructor (ROUTE, itemId, nonEditList, postModel) {
-    super()
+  constructor (props) {
+    super(props)
     this.itemId = 'place_id'
     this.nonEditList = ['place_id', 'created_at', 'updated_at', 'isEditing']
     this.postModel = [

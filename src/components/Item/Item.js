@@ -10,7 +10,7 @@ const Column = styled.li.attrs({
   padding: 0.5rem 1rem;
   min-width: 7rem;
   max-width: 9rem;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
   text-align: ${props => props.align}
 `
 
@@ -24,12 +24,12 @@ const Item = ({id, content, onItemEdit}) => (
       })
     }
     <FuncColumn>
-      <FuncButton onClick={()=>{
-        onItemEdit({
+      <FuncButton onClick={
+        onItemEdit.bind(this, {
           ...content,
           isEditing: true
         })
-      }}>Edit</FuncButton>
+      }>Edit</FuncButton>
     </FuncColumn>
   </Row>
 )

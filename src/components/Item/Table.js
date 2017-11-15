@@ -15,7 +15,7 @@ export const FuncButton = styled.button`
   padding: 1px 15px;
   cursor: pointer;
   border-radius: 10px;
-  border: 1px solid gray;
+  border: 1px solid rgba(0,0,0,0.15);
   background-color: #fff;
   &:hover {
     color: rgba(255,255,255,0.9);
