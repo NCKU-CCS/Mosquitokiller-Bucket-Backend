@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 // Redux Actions
 import ReduxMethod from '../redux/reduxMethod'
 
-import App from './App'
+import App from './App/view'
 
 export default (route, props) => {
   const items = new ReduxMethod(route)

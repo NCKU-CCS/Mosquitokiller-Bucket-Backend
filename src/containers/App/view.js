@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
 // Components
-import List from '../components/ItemList'
-import Item from '../components//Item/Item'
-import ItemEdit from '../components/Item/ItemEditForm'
-import ItemAdd from '../components/Item/ItemAddForm'
+import List from '../../components/ItemList'
+import Item from '../../components/Item/Item'
+import ItemEdit from '../../components/Item/ItemEditForm'
+import ItemAdd from '../../components/Item/ItemAddForm'
 
 class App extends Component {
   constructor (props) {
