@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 
 import store from './store'
 
-import Places from './containers/Places'
+import Places, { Lamps } from './containers/Page'
 import registerServiceWorker from './registerServiceWorker'
 
 
