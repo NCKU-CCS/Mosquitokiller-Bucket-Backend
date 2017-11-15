@@ -1,25 +1,21 @@
 import ReduxMethod from './reduxMethod'
 
-const placeRedux = new ReduxMethod('places')
-const lampRedux = new ReduxMethod('lamps')
-const mccRedux = new ReduxMethod('mcc')
+const List = ['places', 'lamps', 'mcc']
 
-export const types = {
-  places: placeRedux.types,
-  lamps: lampRedux.types,
-  mcc: mccRedux.types,
+const reduxInit = {
+  types: {},
+  actions: {},
+  reducers: {}
 }
 
-export const actions = {
-  places: placeRedux.actions,
-  lamps: lampRedux.actions,
-  mcc: mccRedux.actions,
-}
+const Redux = List.reduce((prev, curr)=>{
+  const redux = new ReduxMethod(curr)
+  prev.types[curr] = redux.types
+  prev.actions[curr] = redux.actions
+  prev.reducers[curr] = redux.reducer
+  return prev
+}, reduxInit)
 
-const reducers = {
-  places: placeRedux.reducer,
-  lamps: lampRedux.reducer,
-  mcc: mccRedux.reducer,
-}
-
-export default reducers
+export const types = Redux.types
+export const actions = Redux.actions
+export default Redux.reducers

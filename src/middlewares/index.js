@@ -6,11 +6,17 @@ const getMiddleWares = (route, id, types) => {
   return [controller.fetchItems, controller.fetchAddItem, controller.fetchUpdateItem]
 }
 
-// MiddleWares
-const places = getMiddleWares('/places/', 'place_id', types.places)
-const lamps = getMiddleWares('/lamps/', 'lamp_id', types.lamps)
-const mccs = getMiddleWares('/mcc/', 'mcc_id', types.mcc)
+const List = [
+  {Route: '/places/', ID: 'place_id', types: types.places},
+  {Route: '/lamps/', ID: 'lamp_id', types: types.lamps},
+  {Route: '/mcc/', ID: 'mcc_id', types: types.mcc}
+]
 
-const middleWares = [...places, ...lamps, ...mccs]
+// MiddleWares
+const middleWares = List.reduce((prev, curr)=>{
+  const middleWare = getMiddleWares(curr.Route, curr.ID, curr.types)
+  prev.push(...middleWare)
+  return prev
+}, [])
 
 export default middleWares
