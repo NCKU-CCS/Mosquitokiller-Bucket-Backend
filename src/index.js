@@ -6,13 +6,22 @@ import { Provider } from 'react-redux'
 import store, { history } from './store'
 
 // Route
-import { Route } from 'react-router'
+import { Route } from 'react-router-dom'
 import { ConnectedRouter } from 'react-router-redux'
 
 // page Components
 import Places, { Lamps } from './containers/Page'
 import registerServiceWorker from './registerServiceWorker'
 
+// Global CSS
+import { injectGlobal } from 'styled-components'
+
+injectGlobal`
+  body {
+    margin: 0;
+    padding: 0;
+  }
+`
 
 
 ReactDOM.render(
