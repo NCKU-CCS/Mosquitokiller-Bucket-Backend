@@ -3,15 +3,19 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 const Header = styled.header`
+  position: relative;
+  z-index: 2;
   width: 100%;
   padding: 1rem 0;
   background-color: #252a2f;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1);
 `
 
 const Nav = styled.ul`
   display: flex;
   justify-content: left;
-  margin: 0;
+  margin: 0 auto;
+  width: 80%;
 `
 
 const NavItem = styled.li`

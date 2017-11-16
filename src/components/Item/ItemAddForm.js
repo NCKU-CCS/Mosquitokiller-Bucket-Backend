@@ -5,6 +5,8 @@ import { Row, FuncColumn, FuncButton } from './Table'
 import './Item.css'
 
 const Section = styled.section`
+  position: relative;
+  z-index: 1;
   background-color: #eee;
   border: 1px solid #ccc;
 `
@@ -33,7 +35,7 @@ const InputGroup = styled.div`
 const Label = styled.span`
   display: inline-block;
   padding: 0 10px;
-  width: 20vw;
+  width: 15vw;
   height: 30px;
   line-height: 30px;
   box-sizing: border-box;

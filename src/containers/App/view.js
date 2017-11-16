@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 // Components
 import Header from '../../components/Header'
 import List from '../../components/ItemList'
+import ItemHead from '../../components/Item/ItemHead'
 import Item from '../../components/Item/Item'
 import ItemEdit from '../../components/Item/ItemEditForm'
 import ItemAdd from '../../components/Item/ItemAddForm'
@@ -20,7 +21,8 @@ class App extends Component {
   }
 
   render () {
-    let itemList = this.props.itemList
+    const itemList = this.props.itemList
+    const heads = itemList[0] ? Object.keys(itemList[0]) : []
     return (
       <div className='App'>
         <Header/>
@@ -29,6 +31,7 @@ class App extends Component {
           onFetchAddItem={this.props.onFetchAddItem}
         />
         <List name={this.route}>
+            <ItemHead heads={heads}/>
           {
             itemList.map((item, index) => {
               return (

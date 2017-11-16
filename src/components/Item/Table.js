@@ -3,15 +3,28 @@ import styled from 'styled-components'
 export const Row = styled.ul`
   display: flex;
   padding: 0;
+  margin: 0 auto;
   width: 80vw;
   justify-content: center;
 `
 
-export const FuncColumn = styled.li`
-  list-style: none; 
-  display:flex;
+export const Column = styled.li.attrs({
+  align: props => props.type === 'string' ? 'left' : 'right'
+})`
+  list-style: none;  
+  padding: 0.5rem 1rem;
+  width: 8rem;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  text-align: ${props => props.align};
+`
+
+export const FuncColumn = Column.extend`
+  display: flex;
+  text-align: center;
+  margin: 0 auto;
   align-items: center;
   justify-content: center;
+  border: 0;
 `
 
 export const FuncButton = styled.button`
