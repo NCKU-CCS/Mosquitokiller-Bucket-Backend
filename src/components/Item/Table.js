@@ -16,12 +16,12 @@ export const Column = styled.li.attrs({
   width: 8rem;
   border-bottom: 1px solid rgba(0,0,0,0.15);
   text-align: ${props => props.align};
+  word-wrap: break-word;
 `
 
 export const FuncColumn = Column.extend`
   display: flex;
   text-align: center;
-  margin: 0 auto;
   align-items: center;
   justify-content: center;
   border: 0;

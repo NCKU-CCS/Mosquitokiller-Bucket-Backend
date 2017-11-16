@@ -24,7 +24,6 @@ const FormRow = Row.extend`
 const FormColumn = styled.li`
   display: inline-block;
   margin: 1rem;
-  width: 45%;
   list-style: none;
 `
 
