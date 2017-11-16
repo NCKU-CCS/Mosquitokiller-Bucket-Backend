@@ -1,9 +1,9 @@
 import React from 'react'
-import { Row, Column, FuncColumn, FuncButton } from './Table'
+import { Row, Column, Value, FuncColumn, FuncButton } from './Table'
 
 import './Item.css'
 
-const ItemEdit = ({itemId, content, nonEditList, onFetchUpdateItem}) => {
+const ItemEdit = ({itemId, content, form, nonEditList, onFetchUpdateItem}) => {
 
   let formValue = {}
   return (
@@ -12,16 +12,18 @@ const ItemEdit = ({itemId, content, nonEditList, onFetchUpdateItem}) => {
         Object.entries(content).map((value, index) => {
           return (
             (!nonEditList.includes(value[0]))
-              ? <Column>
-                <input 
-                  className='editColumn' 
-                  type='text' 
-                  key={index} 
-                  defaultValue={value[1]} 
-                  ref={(el)=>{formValue[value[0]] = el}} 
-                /> </Column>
-              : (typeof(value) === 'boolean') ? null : (
-                <Column key={index} type={typeof(value)}>{value[1]}</Column>
+              ? <Column key={index}>
+                  <input 
+                    className='editColumn' 
+                    type={form[value[0]]}
+                    defaultValue={value[1]} 
+                    ref={(el)=>{formValue[value[0]] = el}} 
+                  />
+                </Column>
+              : (typeof(value[1]) === 'boolean') ? null : (
+                <Column key={index} type={typeof(value)}>
+                  <Value>{value[1]}</Value>
+                </Column>
               )
           )
         })

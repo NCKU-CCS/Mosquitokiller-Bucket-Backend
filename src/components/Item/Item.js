@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Column, FuncColumn, FuncButton } from './Table'
+import { Row, Column, Value, FuncColumn, FuncButton } from './Table'
 
 
 
@@ -8,7 +8,7 @@ const Item = ({id, content, onItemEdit}) => (
     {
       Object.values(content).map((value, index) => {
         return (typeof(value) === 'boolean') ? null : (
-          <Column key={index} type={typeof(value)}>{value}</Column>
+          <Column key={index} type={typeof(value)}><Value >{value}</Value></Column>
         )
       })
     }

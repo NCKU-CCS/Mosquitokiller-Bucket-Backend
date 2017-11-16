@@ -56,7 +56,7 @@ const ItemAddForm = ({form, onFetchAddItem}) => {
 
       <FormRow>
       {
-        form.map((value, index) => {
+        Object.entries(form).map((value, index) => {
           return (
             <FormColumn key={index}>
               <InputGroup>

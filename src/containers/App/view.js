@@ -37,8 +37,9 @@ class App extends Component {
               return (
                 (item.isEditing)
                   ? <ItemEdit
-                      itemId={this.itemId}
                       key={index}
+                      itemId={this.itemId}
+                      form={this.postModel}
                       nonEditList={this.nonEditList}
                       content={item}
                       onFetchUpdateItem={this.props.onFetchUpdateItem}
