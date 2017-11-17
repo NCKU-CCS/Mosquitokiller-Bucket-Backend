@@ -4,10 +4,10 @@ import { Row, FuncColumn, FuncButton } from './Table'
 
 import './Item.css'
 
-const Section = styled.section`
+const SectionAddForm = styled.section`
   position: relative;
   z-index: 1;
-  background-color: #eee;
+  background-color: #fafbfb;
   border: 1px solid #ccc;
 `
 const FormRow = Row.extend`
@@ -16,7 +16,9 @@ const FormRow = Row.extend`
   padding: 1rem;
   width: 80%;
   background-color: #fff;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  // box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  border: 1px solid rgba(27,31,35,0.15);
+  border-radius: 3px;
   text-align: center;
 }
 `
@@ -34,12 +36,13 @@ const InputGroup = styled.div`
 const Label = styled.span`
   display: inline-block;
   padding: 0 10px;
-  width: 15vw;
+  // width: 15vw;
   height: 30px;
   line-height: 30px;
   box-sizing: border-box;
-  border-radius: 5px 0 0 5px;
+  border-radius: 3px 0 0 3px;
   border: 1px solid #ccc;
+  background-color: #f6f8fa;
   color: #555;
   text-align: left;
 `
@@ -52,7 +55,7 @@ const SubmitButton = FuncButton.extend`
 const ItemAddForm = ({form, onFetchAddItem}) => {
   let formValue = {}
   return (
-    <Section>
+    <SectionAddForm>
 
       <FormRow>
       {
@@ -78,7 +81,7 @@ const ItemAddForm = ({form, onFetchAddItem}) => {
         }}>Submit</SubmitButton>
       </FuncColumn>
     </FormRow>
-  </Section>
+  </SectionAddForm>
   )
 }
 

@@ -6,9 +6,8 @@ const Header = styled.header`
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: 1rem 0;
   background-color: #252a2f;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1);
+  // box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1);
 `
 
 const Nav = styled.ul`
@@ -19,8 +18,9 @@ const Nav = styled.ul`
 `
 
 const NavItem = styled.li`
-  list-style: none;
+  padding: 1rem 0;
   width: 10vw;
+  list-style: none;
   text-align: center;
 `
 const StyledLink = styled(Link)`
