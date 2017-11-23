@@ -14,7 +14,7 @@ const ItemEdit = ({itemId, content, form, nonEditList, onFetchUpdateItem}) => {
             (!nonEditList.includes(value[0]))
               ? <Column key={index}>
                   <input 
-                    className='editColumn' 
+                    className='editInput' 
                     type={form[value[0]]}
                     defaultValue={value[1]} 
                     ref={(el)=>{formValue[value[0]] = el}} 

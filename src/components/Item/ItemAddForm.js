@@ -11,6 +11,8 @@ const SectionAddForm = styled.section`
   border: 1px solid #ccc;
 `
 const FormRow = Row.extend`
+  // display: grid;
+  // grid-template-columns: 20rem 20rem 20rem;
   display: block;
   margin: 1rem auto;
   padding: 1rem;
@@ -35,8 +37,8 @@ const InputGroup = styled.div`
 
 const Label = styled.span`
   display: inline-block;
-  padding: 0 10px;
-  // width: 15vw;
+  padding: 0 0.5rem;
+  width: 12rem;
   height: 30px;
   line-height: 30px;
   box-sizing: border-box;
@@ -47,10 +49,15 @@ const Label = styled.span`
   text-align: left;
 `
 
+const SubmitColumn = FuncColumn.extend`
+  margin: 0 auto;
+`
+
 const SubmitButton = FuncButton.extend`
   border-radius: 5px;
   padding: 5px 15px;
 `
+
 
 const ItemAddForm = ({form, onFetchAddItem}) => {
   let formValue = {}
@@ -65,7 +72,7 @@ const ItemAddForm = ({form, onFetchAddItem}) => {
               <InputGroup>
                 <Label>{value[0]}</Label>
                 <input 
-                  className='editColumn' 
+                  className='addInput' 
                   type={value[1]} 
                   defaultValue={null} 
                   ref={(el)=>{formValue[value[0]] = el}} 
@@ -75,11 +82,11 @@ const ItemAddForm = ({form, onFetchAddItem}) => {
           )
         })
       }
-      <FuncColumn>
+      <SubmitColumn>
         <SubmitButton onClick={()=>{
           onFetchAddItem({...formValue})
         }}>Submit</SubmitButton>
-      </FuncColumn>
+      </SubmitColumn>
     </FormRow>
   </SectionAddForm>
   )
