@@ -8,6 +8,9 @@ import Item from '../../components/Item/Item'
 import ItemEdit from '../../components/Item/ItemEditForm'
 import ItemAdd from '../../components/Item/ItemAddForm'
 
+// Method
+import setKeysToHeads from './heads'
+
 class App extends Component {
   constructor (props) {
     super(props)
@@ -22,7 +25,7 @@ class App extends Component {
 
   render () {
     const itemList = this.props.itemList
-    const heads = itemList[0] ? Object.keys(itemList[0]) : []
+    const heads = itemList[0] ? Object.keys(itemList[0]).reduce(setKeysToHeads, []) : []
     return (
       <div className='App'>
         <Header/>
