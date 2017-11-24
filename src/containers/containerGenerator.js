@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 
 import App from './App/view'
 
-export default (route, props, actions) => {
+export default (props, actions) => {
   const mapStateToProps = (store) => ({
-    itemList: store[route],
+    itemList: store[props.route],
     ...props
   })
   const mapDispatchToProps = (dispatch) =>(

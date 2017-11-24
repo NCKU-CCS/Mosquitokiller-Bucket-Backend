@@ -1,5 +1,5 @@
 const headList = {
-  'lamp_location': ['lamp_lon', 'lamp_lat']
+  'lamp_location': ['lamp_longitude', 'lamp_latitude']
 }
 
 const setKeysToHeads = (heads, key) => {

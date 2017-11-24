@@ -2,6 +2,7 @@ import { actions } from '../redux'
 import ContainerGenerator from './containerGenerator'
 
 const placeProps = {
+  route: 'places',
   itemId: 'place_id',
   nonEditList: ['place_id', 'created_at', 'updated_at', 'isEditing'],
   postModel: {
@@ -13,6 +14,7 @@ const placeProps = {
 }
 
 const lampProps = {
+  route: 'lamps',
   itemId: 'lamp_id',
   nonEditList: ['lamp_id', 'lamp_hash_id', 'created_at', 'updated_at', 'isEditing'],
   postModel: {
@@ -25,6 +27,7 @@ const lampProps = {
 }
 
 const mccProps = {
+  route: 'mcc',
   itemId: 'mcc_id',
   nonEditList: ['mcc_id', 'mcc_keys', 'mcc_points', 'mcc_center', 'rule_id', 'created_at', 'updated_at', 'isEditing'],
   postModel: {
@@ -33,6 +36,7 @@ const mccProps = {
 }
 
 const stateProps = {
+  route: 'states',
   itemId: 'state_id',
   nonEditList: ['state_id', 'created_at', 'updated_at', 'isEditing'],
   postModel: {
@@ -45,12 +49,18 @@ const stateProps = {
   }
 }
 
-const Places = ContainerGenerator('places', placeProps, actions.places)
-export const Lamps = ContainerGenerator('lamps', lampProps, actions.lamps)
-export const Mccs = ContainerGenerator('mcc', mccProps, actions.mcc)
-export const States = ContainerGenerator('states', stateProps, actions.states)
+const Places = ContainerGenerator(placeProps, actions.places)
+const Lamps = ContainerGenerator(lampProps, actions.lamps)
+const Mccs = ContainerGenerator(mccProps, actions.mcc)
+const States = ContainerGenerator(stateProps, actions.states)
 
+const Pages = {
+  Places,
+  Lamps,
+  Mccs,
+  States
+}
 
-export default Places
+export default Pages
 
 
