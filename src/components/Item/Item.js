@@ -8,7 +8,7 @@ const Item = ({id, content, onItemEdit}) => (
     {
       Object.values(content).map((value, index) => {
         return (typeof(value) === 'boolean') ? null : (
-          <Column key={index} type={typeof(value)}><Value >{value}</Value></Column>
+          <Column key={index} type={typeof(value)}><Value>{value}</Value></Column>
         )
       })
     }

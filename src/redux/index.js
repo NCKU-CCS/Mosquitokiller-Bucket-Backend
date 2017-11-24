@@ -1,6 +1,6 @@
 import ReduxMethod from './reduxMethod'
 
-const List = ['places', 'lamps', 'mcc']
+const List = ['places', 'lamps', 'mcc', 'states']
 
 const reduxInit = {
   types: {},

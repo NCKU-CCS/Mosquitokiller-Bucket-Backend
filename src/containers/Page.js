@@ -32,9 +32,23 @@ const mccProps = {
   }
 }
 
+const stateProps = {
+  itemId: 'state_id',
+  nonEditList: ['state_id', 'created_at', 'updated_at', 'isEditing'],
+  postModel: {
+    'lamp_id': 'string',
+    'lamp_state': 'number',
+    'lamp_check_date': 'date',
+    'lamp_check_person': 'string',
+    'state_description': 'string',
+    'state_reason': 'string'
+  }
+}
+
 const Places = ContainerGenerator('places', placeProps, actions.places)
 export const Lamps = ContainerGenerator('lamps', lampProps, actions.lamps)
 export const Mccs = ContainerGenerator('mcc', mccProps, actions.mcc)
+export const States = ContainerGenerator('states', stateProps, actions.states)
 
 
 export default Places
