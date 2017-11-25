@@ -2,7 +2,7 @@ const headList = {
   'lamp_location': ['lamp_longitude', 'lamp_latitude']
 }
 
-const setKeysToHeads = (heads, key) => {
+const mapKeysToHeads = (heads, key) => {
   if (headList[key]) {
     heads.push(...headList[key])
   } else {
@@ -11,4 +11,4 @@ const setKeysToHeads = (heads, key) => {
   return heads
 }
 
-export default setKeysToHeads
+export default mapKeysToHeads

@@ -1,9 +1,9 @@
 const BASE = 'http://localhost:3001/apis'
 
 export default class APIController {
-  constructor (ROUTE, ID, types) {
-    this.ROUTE = ROUTE
-    this.ID = ID
+  constructor (route, id, types) {
+    this.route = route
+    this.id = id
     this.types = types
     this.fetchItems = this.fetchItems.bind(this)
     this.fetchUpdateItem = this.fetchUpdateItem.bind(this)
@@ -16,7 +16,7 @@ export default class APIController {
   fetchItems = (store) => (next) => (action) => {
     if (action.type !== this.types.FETCH_LOAD) return next(action)
   
-    fetch(`${BASE}${this.ROUTE}`, {
+    fetch(`${BASE}${this.route}`, {
       method: 'GET'
     })
     .then((response) => {
@@ -45,7 +45,7 @@ export default class APIController {
       return prev
     }, {})
 
-    fetch(`${BASE}${this.ROUTE}`, {
+    fetch(`${BASE}${this.route}`, {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -78,7 +78,7 @@ export default class APIController {
       return prev
     }, {})
   
-    fetch(`${BASE}${this.ROUTE}${payload[this.ID]}`, {
+    fetch(`${BASE}${this.route}${payload[this.id]}`, {
       method: 'PUT',
       credentials: 'include',
       headers: {

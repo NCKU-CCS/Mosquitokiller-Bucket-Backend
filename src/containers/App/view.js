@@ -9,31 +9,25 @@ import ItemEdit from '../../components/Item/ItemEditForm'
 import ItemAdd from '../../components/Item/ItemAddForm'
 
 // Method
-import setKeysToHeads from './heads'
+import mapKeysToHeads from './heads'
 
 class App extends Component {
-  constructor (props) {
-    super(props)
-    this.route = this.props.route
-    this.itemId = this.props.itemId
-    this.nonEditList = this.props.nonEditList
-    this.postModel = this.props.postModel
-  }
+
   componentDidMount () {
     this.props.onFetchLoadItems()
   }
 
   render () {
     const itemList = this.props.itemList
-    const heads = itemList[0] ? Object.keys(itemList[0]).reduce(setKeysToHeads, []) : []
+    const heads = itemList[0] ? Object.keys(itemList[0]).reduce(mapKeysToHeads, []) : []
     return (
       <div className='App'>
         <Header/>
         <ItemAdd 
-          form={this.postModel}
+          form={this.props.postModel}
           onFetchAddItem={this.props.onFetchAddItem}
         />
-        <List name={this.route}>
+        <List name={this.props.route}>
             <ItemHead heads={heads}/>
           {
             itemList.map((item, index) => {
@@ -41,9 +35,9 @@ class App extends Component {
                 (item.isEditing)
                   ? <ItemEdit
                       key={index}
-                      itemId={this.itemId}
-                      form={this.postModel}
-                      nonEditList={this.nonEditList}
+                      itemId={this.props.itemId}
+                      form={this.props.postModel}
+                      nonEditList={this.props.nonEditList}
                       content={item}
                       onFetchUpdateItem={this.props.onFetchUpdateItem}
                     />

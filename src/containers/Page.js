@@ -49,16 +49,11 @@ const stateProps = {
   }
 }
 
-const Places = ContainerGenerator(placeProps, actions.places)
-const Lamps = ContainerGenerator(lampProps, actions.lamps)
-const Mccs = ContainerGenerator(mccProps, actions.mcc)
-const States = ContainerGenerator(stateProps, actions.states)
-
 const Pages = {
-  Places,
-  Lamps,
-  Mccs,
-  States
+  Places: ContainerGenerator(placeProps, actions.places),
+  Lamps: ContainerGenerator(lampProps, actions.lamps),
+  Mccs: ContainerGenerator(mccProps, actions.mcc),
+  States: ContainerGenerator(stateProps, actions.states)
 }
 
 export default Pages
