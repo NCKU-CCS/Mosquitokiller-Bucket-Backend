@@ -11,7 +11,7 @@ export default class APIController {
   }
 
   //
-  // Get All Items
+  // GET All Items
   //
   fetchItems = (store) => (next) => (action) => {
     if (action.type !== this.types.FETCH_LOAD) return next(action)
@@ -40,11 +40,10 @@ export default class APIController {
   fetchAddItem = (store) => (next) => (action) => {
     if (action.type !== this.types.FETCH_ADD) return next(action)
  
-    const payload = Object.keys(action.payload).reduce((prev, current) => {
-      prev[current] = action.payload[current].value || null
-      return prev
-    }, {})
+    // get value from input element
+    const payload = getValueFromInput(action.payload)
 
+    console.log(payload)
     fetch(`${BASE}${this.route}`, {
       method: 'POST',
       credentials: 'include',
@@ -67,20 +66,13 @@ export default class APIController {
 
 
   //
-  // Update Item
+  // PUT OLD Item
   //
   fetchUpdateItem = (store) => (next) => (action) => {
     if (action.type !== this.types.FETCH_UPDATE) return next(action)
     
     // get value from input element
-    const payload = Object.keys(action.payload).reduce((prev, current) => {
-      // get array value
-      prev[current] = (action.payload[current].length > 1)
-        ? action.payload[current].map(input => input.value)
-        : action.payload[current].value || null
-      return prev
-
-    }, {})
+    const payload = getValueFromInput(action.payload)
     
     // send request
     fetch(`${BASE}${this.route}${payload[this.id]}`, {
@@ -103,4 +95,15 @@ export default class APIController {
     .catch((error) => { throw new Error(error.message) })
   }
 
+}
+
+const getValueFromInput = (inputs) => {
+  return Object.keys(inputs).reduce((prev, current) => {
+    // get array value
+    prev[current] = (inputs[current].length > 1)
+      ? inputs[current].map(input => input.value)
+      : inputs[current].value || null
+    return prev
+
+  }, {})
 }

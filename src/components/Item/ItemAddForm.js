@@ -67,17 +67,36 @@ const ItemAddForm = ({form, onFetchAddItem}) => {
       {
         Object.entries(form).map((value, index) => {
           return (
-            <FormColumn key={index}>
-              <InputGroup>
-                <Label>{value[0]}</Label>
-                <input
-                  className='addInput' 
-                  type={value[1]} 
-                  defaultValue={null} 
-                  ref={(el)=>{formValue[value[0]] = el}} 
-                />
-              </InputGroup>
-            </FormColumn>
+            (typeof(value[1]) === 'object')
+              // show multiple input
+              ? value[1].subLabels.map((subLabel, subIndex) => (
+                <FormColumn key={`${index}-${subIndex}`}>
+                  <InputGroup>
+                    <Label>{subLabel}</Label>
+                    <input
+                      className='addInput' 
+                      type={value[1].type} 
+                      defaultValue={null} 
+                      ref={(el)=>{
+                        formValue[value[0]] = formValue[value[0]] || []
+                        formValue[value[0]][subIndex] = el
+                      }} 
+                    />
+                  </InputGroup>
+                </FormColumn>
+              ))
+              // show normal input
+              : <FormColumn key={index}>
+                  <InputGroup>
+                    <Label>{value[0]}</Label>
+                    <input
+                      className='addInput' 
+                      type={value[1]} 
+                      defaultValue={null} 
+                      ref={(el)=>{formValue[value[0]] = el}} 
+                    />
+                  </InputGroup>
+                </FormColumn>
           )
         })
       }

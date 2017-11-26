@@ -18,7 +18,11 @@ const lampProps = {
   divideList: ['lamp_location'],
   nonEditList: ['lamp_id', 'lamp_hash_id', 'created_at', 'updated_at', 'isEditing'],
   postModel: {
-    'lamp_location': ['number'],
+    'lamp_id': 'string',
+    'lamp_location': {
+      'subLabels': ['lamp_longitude', 'lamp_latitude'],
+      'type': 'number'
+    },
     'lamp_deployed_date': 'date',
     'lamp_wifi_ssid': 'string',
     'lamp_wifi_password': 'string',

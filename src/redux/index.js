@@ -8,13 +8,13 @@ const reduxInit = {
 }
 
 const Redux = Object.values(Props).reduce((prev, curr)=>{
-  const route = curr.route
+  const itemName = curr.route
   const itemId = curr.itemId
 
-  const redux = new ReduxMethod(route, itemId)
-  prev.types[route] = redux.types
-  prev.actions[route] = redux.actions
-  prev.reducers[route] = redux.reducer
+  const redux = new ReduxMethod(itemName, itemId)
+  prev.types[itemName] = redux.types
+  prev.actions[itemName] = redux.actions
+  prev.reducers[itemName] = redux.reducer
 
   return prev
 }, reduxInit)

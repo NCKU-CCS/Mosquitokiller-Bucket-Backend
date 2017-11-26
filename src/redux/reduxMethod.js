@@ -1,9 +1,9 @@
 
 
 export default class ReduxMethod {
-  constructor (name, itemId) {
+  constructor (name, Id) {
     // ID name for reducer
-    this.itemId = itemId
+    this.Id = Id
 
     // Actions
     this.types = {
@@ -79,7 +79,7 @@ export default class ReduxMethod {
       case this.types.UPDATE:
         {
           const newItems = [...state]
-          const index = newItems.findIndex((item) => item[this.itemId] === action.payload[this.itemId])
+          const index = newItems.findIndex((item) => item[this.Id] === action.payload[this.Id])
 
           if (index === -1) return newItems
   

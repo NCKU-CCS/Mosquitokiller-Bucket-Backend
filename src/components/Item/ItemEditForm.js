@@ -24,7 +24,7 @@ const ItemEdit = ({itemId, content, form, nonEditList, onFetchUpdateItem}) => {
                   <Column key={`${index}-${subIndex}`}>
                     <input 
                       className='editInput' 
-                      type={form[value[0]][0]}
+                      type={form[value[0]].type}
                       defaultValue={subValue} 
                       ref={(el)=>{
                         formValue[value[0]] = formValue[value[0]] || []
