@@ -43,7 +43,6 @@ export default class APIController {
     // get value from input element
     const payload = getValueFromInput(action.payload)
 
-    console.log(payload)
     fetch(`${BASE}${this.route}`, {
       method: 'POST',
       credentials: 'include',

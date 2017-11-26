@@ -30,7 +30,7 @@ ReactDOM.render(
       <div>
         <Route exact path="/" component={Pages.Places}/>
         <Route path="/lamps" component={Pages.Lamps}/>
-        <Route path="/mccs" component={Pages.Mccs}/>
+        <Route path="/mcc" component={Pages.Mccs}/>
         <Route path="/states" component={Pages.States}/>
       </div>
     </ConnectedRouter>

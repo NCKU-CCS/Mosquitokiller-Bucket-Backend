@@ -1,17 +1,16 @@
 import { types } from '../redux'
 import APIController from './fetchMiddleware'
+import Props from '../config/Props'
 
 const getMiddleWares = (route, id, types) => {
   const controller = new APIController(route, id, types)
   return [controller.fetchItems, controller.fetchAddItem, controller.fetchUpdateItem]
 }
 
-const List = [
-  {Route: '/places/', ID: 'place_id', types: types.places},
-  {Route: '/lamps/', ID: 'lamp_id', types: types.lamps},
-  {Route: '/mcc/', ID: 'mcc_id', types: types.mcc},
-  {Route: '/states/', ID: 'state_id', types: types.states}
-]
+// Generate arguments of middleware of each item
+const List = Object.values(Props).map(values => (
+  {Route: `/${values.route}/`, ID: values.itemId, types: types[values.route]}
+), [])
 
 // MiddleWares
 const middleWares = List.reduce((prev, curr)=>{
