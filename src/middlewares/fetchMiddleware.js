@@ -74,10 +74,15 @@ export default class APIController {
     
     // get value from input element
     const payload = Object.keys(action.payload).reduce((prev, current) => {
-      prev[current] = action.payload[current].value || null
+      // get array value
+      prev[current] = (action.payload[current].length > 1)
+        ? action.payload[current].map(input => input.value)
+        : action.payload[current].value || null
       return prev
+
     }, {})
-  
+    
+    // send request
     fetch(`${BASE}${this.route}${payload[this.id]}`, {
       method: 'PUT',
       credentials: 'include',

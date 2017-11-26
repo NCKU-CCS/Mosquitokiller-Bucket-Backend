@@ -1,6 +1,5 @@
 import ReduxMethod from './reduxMethod'
-
-const List = ['places', 'lamps', 'mcc', 'states']
+import Props from '../config/Props'
 
 const reduxInit = {
   types: {},
@@ -8,11 +7,15 @@ const reduxInit = {
   reducers: {}
 }
 
-const Redux = List.reduce((prev, curr)=>{
-  const redux = new ReduxMethod(curr)
-  prev.types[curr] = redux.types
-  prev.actions[curr] = redux.actions
-  prev.reducers[curr] = redux.reducer
+const Redux = Object.values(Props).reduce((prev, curr)=>{
+  const route = curr.route
+  const itemId = curr.itemId
+
+  const redux = new ReduxMethod(route, itemId)
+  prev.types[route] = redux.types
+  prev.actions[route] = redux.actions
+  prev.reducers[route] = redux.reducer
+
   return prev
 }, reduxInit)
 

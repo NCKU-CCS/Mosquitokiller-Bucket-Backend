@@ -63,7 +63,6 @@ const ItemAddForm = ({form, onFetchAddItem}) => {
   let formValue = {}
   return (
     <SectionAddForm>
-
       <FormRow>
       {
         Object.entries(form).map((value, index) => {
@@ -71,7 +70,7 @@ const ItemAddForm = ({form, onFetchAddItem}) => {
             <FormColumn key={index}>
               <InputGroup>
                 <Label>{value[0]}</Label>
-                <input 
+                <input
                   className='addInput' 
                   type={value[1]} 
                   defaultValue={null} 

@@ -22,7 +22,7 @@ class App extends Component {
     const heads = itemList[0] ? Object.keys(itemList[0]).reduce(mapKeysToHeads, []) : []
     return (
       <div className='App'>
-        <Header/>
+        <Header />
         <ItemAdd 
           form={this.props.postModel}
           onFetchAddItem={this.props.onFetchAddItem}
