@@ -9,7 +9,7 @@ import ItemEdit from '../../components/Item/ItemEditForm'
 import ItemAdd from '../../components/Item/ItemAddForm'
 
 // Method
-import mapKeysToHeads from './heads'
+import mapKeysToHeads from '../../utility/heads'
 
 class App extends Component {
 
@@ -43,6 +43,7 @@ class App extends Component {
                     />
                   : <Item
                       key={index}
+                      divideList={this.props.divideList}
                       content={item}
                       onItemEdit={this.props.onItemEdit}
                     />

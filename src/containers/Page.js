@@ -4,6 +4,7 @@ import ContainerGenerator from './containerGenerator'
 const placeProps = {
   route: 'places',
   itemId: 'place_id',
+  divideList: [],
   nonEditList: ['place_id', 'created_at', 'updated_at', 'isEditing'],
   postModel: {
     'place_name': 'string',
@@ -16,9 +17,10 @@ const placeProps = {
 const lampProps = {
   route: 'lamps',
   itemId: 'lamp_id',
+  divideList: ['lamp_location'],
   nonEditList: ['lamp_id', 'lamp_hash_id', 'created_at', 'updated_at', 'isEditing'],
   postModel: {
-    'lamp_location': 'string',
+    'lamp_location': 'number',
     'lamp_deployed_date': 'date',
     'lamp_wifi_ssid': 'string',
     'lamp_wifi_password': 'string',
@@ -29,6 +31,7 @@ const lampProps = {
 const mccProps = {
   route: 'mcc',
   itemId: 'mcc_id',
+  divideList: [],
   nonEditList: ['mcc_id', 'mcc_keys', 'mcc_points', 'mcc_center', 'rule_id', 'created_at', 'updated_at', 'isEditing'],
   postModel: {
     'mcc_center': 'string'
@@ -38,6 +41,7 @@ const mccProps = {
 const stateProps = {
   route: 'states',
   itemId: 'state_id',
+  divideList: [],
   nonEditList: ['state_id', 'created_at', 'updated_at', 'isEditing'],
   postModel: {
     'lamp_id': 'string',

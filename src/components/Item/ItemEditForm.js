@@ -11,8 +11,13 @@ const ItemEdit = ({itemId, content, form, nonEditList, onFetchUpdateItem}) => {
       {
         Object.entries(content).map((value, index) => {
           return (
-            (!nonEditList.includes(value[0]))
-              ? <Column key={index}>
+            (nonEditList.includes(value[0]))
+              ? (typeof(value[1]) === 'boolean') ? null : (
+                <Column key={index} type={typeof(value)}>
+                  <Value>{value[1]}</Value>
+                </Column>
+              )
+              : <Column key={index}>
                   <input 
                     className='editInput' 
                     type={form[value[0]]}
@@ -20,11 +25,6 @@ const ItemEdit = ({itemId, content, form, nonEditList, onFetchUpdateItem}) => {
                     ref={(el)=>{formValue[value[0]] = el}} 
                   />
                 </Column>
-              : (typeof(value[1]) === 'boolean') ? null : (
-                <Column key={index} type={typeof(value)}>
-                  <Value>{value[1]}</Value>
-                </Column>
-              )
           )
         })
       }
