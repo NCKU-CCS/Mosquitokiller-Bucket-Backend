@@ -4,7 +4,9 @@ import Props from '../config/Props'
 
 const getMiddleWares = (route, id, types) => {
   const controller = new APIController(route, id, types)
-  return [controller.fetchItems, controller.fetchAddItem, controller.fetchUpdateItem]
+  return [controller.fetchItems, controller.fetchAddItem, 
+          controller.fetchUpdateItem, controller.fetchRemoveItem
+         ]
 }
 
 // Generate arguments of middleware of each item

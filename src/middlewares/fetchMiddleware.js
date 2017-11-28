@@ -6,8 +6,9 @@ export default class APIController {
     this.id = id
     this.types = types
     this.fetchItems = this.fetchItems.bind(this)
-    this.fetchUpdateItem = this.fetchUpdateItem.bind(this)
     this.fetchAddItem = this.fetchAddItem.bind(this)
+    this.fetchUpdateItem = this.fetchUpdateItem.bind(this)
+    this.fetchRemoveItem = this.fetchRemoveItem.bind(this)
   }
 
   //
@@ -38,7 +39,7 @@ export default class APIController {
   // POST NEW Item
   //
   fetchAddItem = (store) => (next) => (action) => {
-    if (action.type !== this.types.FETCH_ADD) return next(action)
+    if (action.type !== this.types.FETCH_CREATE) return next(action)
  
     // get value from input element
     const payload = getValueFromInput(action.payload)
@@ -90,6 +91,34 @@ export default class APIController {
     .then(() => {
       const stateItem = Object.assign({}, payload, { isEditing: false })
       return action.cb(stateItem, store.dispatch)
+    })
+    .catch((error) => { throw new Error(error.message) })
+  }
+
+  //
+  // DELETE OLD Item
+  //
+  fetchRemoveItem = (store) => (next) => (action) => {
+
+    if (action.type !== this.types.FETCH_REMOVE) return next(action)
+    // get value from input element
+    const itemId = action.payload
+    
+    // send request
+    fetch(`${BASE}${this.route}${itemId}`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json; charset=utf-8"
+      }
+    })
+    .then((response) => {
+      if (!response.ok) throw new Error(response.statusText)
+      return 
+    })
+    .then(() => {
+      return action.cb(itemId, store.dispatch)
     })
     .catch((error) => { throw new Error(error.message) })
   }

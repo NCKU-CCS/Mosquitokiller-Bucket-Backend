@@ -12,8 +12,9 @@ export default class ReduxMethod {
       UPDATE: `${name}/UPDATE`,
       REMOVE: `${name}/REMOVE`,
       FETCH_LOAD: `${name}/FETCH_LOAD`,
-      FETCH_ADD: `${name}/FETCH_ADD`,
-      FETCH_UPDATE: `${name}/FETCH_UPDATE`
+      FETCH_CREATE: `${name}/FETCH_CREATE`,
+      FETCH_UPDATE: `${name}/FETCH_UPDATE`,
+      FETCH_REMOVE: `${name}/FETCH_REMOVE`
     }
 
     // Action Creators
@@ -37,7 +38,12 @@ export default class ReduxMethod {
         type: this.types.UPDATE,
         payload
       }),
-    
+
+      onItemRemove: (payload) => ({
+        type: this.types.REMOVE,
+        payload
+      }),
+
       onFetchLoadItems: () => (
         {
           type: this.types.FETCH_LOAD,
@@ -47,7 +53,7 @@ export default class ReduxMethod {
     
       onFetchAddItem: (payload) => (
         {
-          type: this.types.FETCH_ADD,
+          type: this.types.FETCH_CREATE,
           payload,
           cb: (response, dispatch) => dispatch(this.actions.onItemAdd(response))
         }
@@ -58,6 +64,14 @@ export default class ReduxMethod {
           type: this.types.FETCH_UPDATE,
           payload,
           cb: (response, dispatch) => dispatch(this.actions.onItemUpdate(response))
+        }
+      ),
+
+      onFetchRemoveItem: (payload) => (
+        {
+          type: this.types.FETCH_REMOVE,
+          payload,
+          cb: (response, dispatch) => dispatch(this.actions.onItemRemove(response))
         }
       )
     }
@@ -84,6 +98,18 @@ export default class ReduxMethod {
           if (index === -1) return newItems
   
           newItems[index] = action.payload
+  
+          return newItems
+        }
+      
+      case this.types.REMOVE:
+        {
+          const newItems = [...state]
+          const index = newItems.findIndex((item) => item[this.Id] === action.payload)
+
+          if (index === -1) return newItems
+  
+          newItems.splice(index, 1)
   
           return newItems
         }
