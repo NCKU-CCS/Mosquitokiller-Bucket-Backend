@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
-export const Row = styled.ul`
+export const Row = styled.tr`
   display: flex;
   padding: 0;
   margin: 0 auto;
   justify-content: center;
 `
 
-export const Column = styled.li.attrs({
+export const Column = styled.td.attrs({
   align: props => props.type === 'string' ? 'left' : 'right'
 })`
   list-style: none;  

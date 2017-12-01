@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const ListGroup = styled.ul`
+const ListGroup = styled.table`
   padding: 0;
-  margin: 1rem;
+  margin: 1rem auto;
 `
 
 const itemList = ({children}) => {

@@ -1,13 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Row, Column, Value} from './Table'
+import { Row, Value} from './Table'
 
-const HeadColumn = styled(Column)`
-  text-align: center;
+const HeadColumn = styled.th`
   list-style: none;  
-  word-wrap: break-word;
-  font-weight: 800;
+  width: 10rem;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
   color: rgba(0,0,0,0.9);
+  font-weight: 800;
+  text-align: center;
+  word-wrap: break-word;
 `
 
 const ItemHead = ({heads}) => {
