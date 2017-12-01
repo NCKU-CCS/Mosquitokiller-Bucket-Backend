@@ -134,7 +134,7 @@ export default class APIController {
 /**
  * Get values from form inputs for sending http request
  * 
- * @param   Object inputs dom from form
+ * @param   Object inputs: input dom from form
  * @return  Object
  */
 const getValueFromInput = (inputs) => {
@@ -151,10 +151,10 @@ const getValueFromInput = (inputs) => {
 /**
  * Get new item data from response body for setting new states
  *
- * @param   Object  response response from fetch request
- * @param   Number  status  success status value e.g. 200
+ * @param   Object  response: response return from fetch request
+ * @param   Number  status:  success status value e.g. 200
  * @return  Object
-*/
+ */
 const getItemFromResponse = async (response, status=200) => {
   if (response.status !== status) {
     const message = await response.json()
