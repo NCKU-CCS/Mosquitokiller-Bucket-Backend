@@ -1,7 +1,5 @@
 import React from 'react'
-import { Row, Column, Value, FuncColumn, FuncButton } from './Table'
-
-import './Item.css'
+import { Row, Column, Value, FuncColumn, FuncButton, EditInput } from './Table'
 
 const ItemEdit = ({itemId, content, form, nonEditList, onFetchUpdateItem}) => {
 
@@ -22,11 +20,10 @@ const ItemEdit = ({itemId, content, form, nonEditList, onFetchUpdateItem}) => {
                 // show array edit form
                 ? value[1].map((subValue, subIndex) => (
                   <Column key={`${index}-${subIndex}`}>
-                    <input 
-                      className='editInput' 
+                    <EditInput
                       type={form[value[0]].type}
                       defaultValue={subValue} 
-                      ref={(el)=>{
+                      innerRef={(el)=>{
                         formValue[value[0]] = formValue[value[0]] || []
                         formValue[value[0]][subIndex] = el
                       }}
@@ -35,11 +32,10 @@ const ItemEdit = ({itemId, content, form, nonEditList, onFetchUpdateItem}) => {
                 ))
                 // show normal edit form
                 : <Column key={index}>
-                    <input 
-                      className='editInput' 
+                    <EditInput 
                       type={form[value[0]]}
                       defaultValue={value[1]} 
-                      ref={(el)=>{formValue[value[0]] = el}} 
+                      innerRef={(el)=>{formValue[value[0]] = el}} 
                     />
                   </Column>
           )

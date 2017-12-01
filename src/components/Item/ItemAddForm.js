@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Row, FuncColumn, FuncButton } from './Table'
-
-import './Item.css'
+import { FuncButton, AddInput } from './Table'
 
 const SectionAddForm = styled.section`
   position: relative;
@@ -10,19 +8,16 @@ const SectionAddForm = styled.section`
   background-color: #fafbfb;
   border: 1px solid #ccc;
 `
-const FormRow = Row.extend`
-  // display: grid;
-  // grid-template-columns: 20rem 20rem 20rem;
+
+const FormRow = styled.ul`
   display: block;
   margin: 1rem auto;
   padding: 1rem;
   width: 80%;
   background-color: #fff;
-  // box-shadow: 0 1px 1px rgba(0,0,0,0.1);
   border: 1px solid rgba(27,31,35,0.15);
   border-radius: 3px;
   text-align: center;
-}
 `
 
 const FormColumn = styled.li`
@@ -49,7 +44,12 @@ const Label = styled.span`
   text-align: left;
 `
 
-const SubmitColumn = FuncColumn.extend`
+const SubmitColumn = styled.li`
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
   margin: 0 auto;
 `
 
@@ -79,11 +79,10 @@ const ItemAddForm = ({form, onFetchAddItem}) => {
                 <FormColumn key={`${index}-${subIndex}`}>
                   <InputGroup>
                     <Label>{subLabel}</Label>
-                    <input
-                      className='addInput' 
+                    <AddInput
                       type={value[1].type} 
                       defaultValue={null} 
-                      ref={(el)=>{
+                      innerRef={(el)=>{
                         formValue[value[0]] = formValue[value[0]] || []
                         formValue[value[0]][subIndex] = el
                       }} 
@@ -95,11 +94,10 @@ const ItemAddForm = ({form, onFetchAddItem}) => {
               : <FormColumn key={index}>
                   <InputGroup>
                     <Label>{value[0]}</Label>
-                    <input
-                      className='addInput' 
+                    <AddInput
                       type={value[1]} 
                       defaultValue={null} 
-                      ref={(el)=>{formValue[value[0]] = el}} 
+                      innerRef={(el)=>{formValue[value[0]] = el}} 
                     />
                   </InputGroup>
                 </FormColumn>

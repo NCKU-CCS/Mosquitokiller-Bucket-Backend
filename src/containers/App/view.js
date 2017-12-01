@@ -28,7 +28,8 @@ class App extends Component {
           onFetchAddItem={this.props.onFetchAddItem}
         />
         <List name={this.props.route}>
-            <ItemHead heads={heads}/>
+            <thead><ItemHead heads={heads}/></thead>
+            <tbody>
           {
             itemList.map((item, index) => {
               return (
@@ -50,6 +51,7 @@ class App extends Component {
               )
             })
           }
+          </tbody>
         </List>
       </div>
     )
