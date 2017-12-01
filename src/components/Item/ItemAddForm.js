@@ -56,6 +56,12 @@ const SubmitColumn = FuncColumn.extend`
 const SubmitButton = FuncButton.extend`
   border-radius: 5px;
   padding: 5px 15px;
+  background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%);
+  color: #fff;
+  &:hover {
+    background-image: linear-gradient(-180deg, #2fcb53 0%, #269f42 90%);
+    border-color: rgba(27,31,35,0.5);
+  }
 `
 
 

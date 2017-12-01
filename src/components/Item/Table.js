@@ -33,11 +33,11 @@ export const FuncButton = styled.button`
   padding: 1px 15px;
   cursor: pointer;
   border-radius: 10px;
-  border: 1px solid rgba(0,0,0,0.15);
-  background-color: #fff;
+  border: 1px solid rgba(27,31,35,0.2);
+  background-image: linear-gradient(-180deg, #fafbfc 0%, #eff3f6 90%);
   &:hover {
-    color: rgba(255,255,255,0.9);
     background-color: #51e6a6;
-    border: 1px solid #51e6a6;
+    background-image: linear-gradient(-180deg, #f0f3f6 0%, #e6ebf1 90%);
+    border: 1px solid rgba(27,31,35,0.35);
   } 
 `
