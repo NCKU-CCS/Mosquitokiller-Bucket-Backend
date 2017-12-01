@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Row, HeadColumn, Value} from './Table'
 
 const ItemHead = ({heads}) => {

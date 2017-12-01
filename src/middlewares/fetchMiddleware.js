@@ -1,5 +1,10 @@
 const BASE = 'http://localhost:3001/apis'
 
+const HEADERS = {
+  "Accept": "application/json",
+  "Content-Type": "application/json; charset=utf-8"
+}
+
 export default class APIController {
   constructor (route, id, types) {
     this.route = route
@@ -9,6 +14,18 @@ export default class APIController {
     this.fetchAddItem = this.fetchAddItem.bind(this)
     this.fetchUpdateItem = this.fetchUpdateItem.bind(this)
     this.fetchRemoveItem = this.fetchRemoveItem.bind(this)
+  }
+
+  async _request(uri, method, payload=null) {
+    const content = {
+      method: method,
+      credentials: 'include',
+      headers: HEADERS
+    }
+    if (payload) {
+      content.body = JSON.stringify(payload)
+    }
+    return await fetch(uri, content)
   }
 
   //
@@ -38,91 +55,88 @@ export default class APIController {
   //
   // POST NEW Item
   //
-  fetchAddItem = (store) => (next) => (action) => {
+  fetchAddItem = (store) => (next) => async (action) => {
     if (action.type !== this.types.FETCH_CREATE) return next(action)
  
-    // get value from input element
-    const payload = getValueFromInput(action.payload)
+    try {
+      // get value from input element
+      const payload = getValueFromInput(action.payload)
+      
+      // send post request
+      const uri = `${BASE}${this.route}`
+      const response = await this._request(uri, 'POST', payload)
 
-    fetch(`${BASE}${this.route}`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json; charset=utf-8"
-      },
-      body: JSON.stringify(payload)
-    })
-    .then((response) => {
-      if (!response.ok) throw new Error(response.statusText)
-      return response.json()
-    })
-    .then((item) => {
-      const stateItem = Object.assign({}, item, { isEditing: false })
-      return action.cb(stateItem, store.dispatch)
-    })
-    .catch((error) => { throw new Error(error.message) })
+      // check response
+      if (response.status !== 201) {
+        const message = await response.json()
+        throw {...message, status: response.status}
+      } else {
+        const item = await response.json()
+        const stateItem = Object.assign({}, item, { isEditing: false })
+        return action.cb(stateItem, store.dispatch)
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
   }
 
 
   //
   // PUT OLD Item
   //
-  fetchUpdateItem = (store) => (next) => (action) => {
+  fetchUpdateItem = (store) => (next) => async (action) => {
     if (action.type !== this.types.FETCH_UPDATE) return next(action)
     
-    // get value from input element
-    const payload = getValueFromInput(action.payload)
+    try {
+      // get value from input element
+      const payload = getValueFromInput(action.payload)
     
-    // send request
-    fetch(`${BASE}${this.route}${payload[this.id]}`, {
-      method: 'PUT',
-      credentials: 'include',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json; charset=utf-8"
-      },
-      body: JSON.stringify(payload)
-    })
-    .then((response) => {
-      if (!response.ok) throw new Error(response.statusText)
-      return 
-    })
-    .then(() => {
-      const stateItem = Object.assign({}, payload, { isEditing: false })
-      return action.cb(stateItem, store.dispatch)
-    })
-    .catch((error) => { throw new Error(error.message) })
+      // send put request
+      const uri = `${BASE}${this.route}${payload[this.id]}`
+      const response = await this._request(uri, 'PUT', payload)
+      
+      // check response
+      if (response.status !== 204) {
+        const message = await response.json()
+        throw {...message, status: response.status}
+      } else {
+        const stateItem = Object.assign({}, payload, { isEditing: false })
+        return action.cb(stateItem, store.dispatch)
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   //
   // DELETE OLD Item
   //
-  fetchRemoveItem = (store) => (next) => (action) => {
+  fetchRemoveItem = (store) => (next) => async (action) => {
 
     if (action.type !== this.types.FETCH_REMOVE) return next(action)
-    // get value from input element
-    const itemId = action.payload
     
-    // send request
-    fetch(`${BASE}${this.route}${itemId}`, {
-      method: 'DELETE',
-      credentials: 'include',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json; charset=utf-8"
+    try {
+      // get value from input element
+      const itemId = action.payload
+    
+      // send put request
+      const uri = `${BASE}${this.route}${itemId}`
+      const response = await this._request(uri, 'DELETE')
+      
+      // check response
+      if (response.status !== 204) {
+        const message = await response.json()
+        throw {...message, status: response.status}
+      } else {
+        return action.cb(itemId, store.dispatch)
       }
-    })
-    .then((response) => {
-      if (!response.ok) throw new Error(response.statusText)
-      return 
-    })
-    .then(() => {
-      return action.cb(itemId, store.dispatch)
-    })
-    .catch((error) => { throw new Error(error.message) })
-  }
 
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 const getValueFromInput = (inputs) => {
