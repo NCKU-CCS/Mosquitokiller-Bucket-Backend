@@ -31,24 +31,27 @@ export default class APIController {
   //
   // GET All Items
   //
-  fetchItems = (store) => (next) => (action) => {
+  fetchItems = (store) => (next) => async (action) => {
     if (action.type !== this.types.FETCH_LOAD) return next(action)
   
-    fetch(`${BASE}${this.route}`, {
-      method: 'GET'
-    })
-    .then((response) => {
-      if (!response.ok) throw new Error(response.statusText)
-      return response.json()
-    })
-    .then(itemList => {
-      const items = itemList.map((item) => {
-        return Object.assign({}, item, { isEditing: false })
-      })
-  
-      return action.cb(items, store.dispatch)
-    })
-    .catch((error) => { throw new Error(error.message) })
+    try {
+      // send get request
+      const uri = `${BASE}${this.route}`
+      const response = await this._request(uri, 'GET')
+      
+      if (response.status !== 200) {
+        const message = await response.json()
+        throw {...message, status: response.status}
+      } else {
+        const itemList = await response.json()
+        const items = itemList.map((item) => {
+          return Object.assign({}, item, { isEditing: false })
+        })
+        return action.cb(items, store.dispatch)
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
   
 
@@ -59,7 +62,7 @@ export default class APIController {
     if (action.type !== this.types.FETCH_CREATE) return next(action)
  
     try {
-      // get value from input element
+      // get values from input element
       const payload = getValueFromInput(action.payload)
       
       // send post request
@@ -67,14 +70,8 @@ export default class APIController {
       const response = await this._request(uri, 'POST', payload)
 
       // check response
-      if (response.status !== 201) {
-        const message = await response.json()
-        throw {...message, status: response.status}
-      } else {
-        const item = await response.json()
-        const stateItem = Object.assign({}, item, { isEditing: false })
-        return action.cb(stateItem, store.dispatch)
-      }
+      const stateItem = await getItemFromResponse(response, 201)
+      return action.cb(stateItem, store.dispatch)
 
     } catch (error) {
       console.log(error)
@@ -89,7 +86,7 @@ export default class APIController {
     if (action.type !== this.types.FETCH_UPDATE) return next(action)
     
     try {
-      // get value from input element
+      // get values from input element
       const payload = getValueFromInput(action.payload)
     
       // send put request
@@ -97,13 +94,8 @@ export default class APIController {
       const response = await this._request(uri, 'PUT', payload)
       
       // check response
-      if (response.status !== 204) {
-        const message = await response.json()
-        throw {...message, status: response.status}
-      } else {
-        const stateItem = Object.assign({}, payload, { isEditing: false })
-        return action.cb(stateItem, store.dispatch)
-      }
+      const stateItem = await getItemFromResponse(response, 200)
+      return action.cb(stateItem, store.dispatch)
 
     } catch (error) {
       console.log(error)
@@ -139,13 +131,36 @@ export default class APIController {
   }
 }
 
+/**
+ * Get values from form inputs for sending http request
+ * 
+ * @param   Object inputs dom from form
+ * @return  Object
+ */
 const getValueFromInput = (inputs) => {
   return Object.keys(inputs).reduce((prev, current) => {
-    // get array value
+    // get array value or normal value
     prev[current] = (inputs[current].length > 1)
       ? inputs[current].map(input => input.value)
       : inputs[current].value || null
     return prev
 
   }, {})
+}
+
+/**
+ * Get new item data from response body for setting new states
+ *
+ * @param   Object  response response from fetch request
+ * @param   Number  status  success status value e.g. 200
+ * @return  Object
+*/
+const getItemFromResponse = async (response, status=200) => {
+  if (response.status !== status) {
+    const message = await response.json()
+    throw {...message, status: response.status}
+  } else {
+    const item = await response.json()
+    return Object.assign({}, item, { isEditing: false })
+  }
 }
