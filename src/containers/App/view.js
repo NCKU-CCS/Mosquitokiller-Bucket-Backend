@@ -12,45 +12,42 @@ import ItemAdd from '../../components/Item/ItemAddForm'
 import mapKeysToHeads from '../../utility/heads'
 
 class App extends Component {
-
   componentDidMount () {
     this.props.onFetchLoadItems()
   }
 
   render () {
     const itemList = this.props.itemList
-    const heads = itemList[0] ? Object.keys(itemList[0]).reduce(mapKeysToHeads, []) : []
+    const heads = itemList[0]
+      ? Object.keys(itemList[0]).reduce(mapKeysToHeads, [])
+      : []
     return (
       <div className='App'>
         <Header />
-        <ItemAdd 
+        <ItemAdd
           form={this.props.postModel}
           onFetchAddItem={this.props.onFetchAddItem}
         />
         <List name={this.props.route}>
-            <thead><ItemHead heads={heads}/></thead>
-            <tbody>
-          {
-            itemList.map((item, index) => {
-              return (
-                (item.isEditing)
-                  ? <ItemEdit
-                      key={index}
-                      itemId={this.props.itemId}
-                      form={this.props.postModel}
-                      nonEditList={this.props.nonEditList}
-                      content={item}
-                      onFetchUpdateItem={this.props.onFetchUpdateItem}
-                    />
-                  : <Item
-                      key={index}
-                      divideList={this.props.divideList}
-                      content={item}
-                      onItemEdit={this.props.onItemEdit}
-                    />
-              )
-            })
-          }
+          <thead><ItemHead heads={heads} /></thead>
+          <tbody>
+            {itemList.map((item, index) => {
+              return item.isEditing
+                ? <ItemEdit
+                  key={index}
+                  itemId={this.props.itemId}
+                  form={this.props.postModel}
+                  nonEditList={this.props.nonEditList}
+                  content={item}
+                  onFetchUpdateItem={this.props.onFetchUpdateItem}
+                  />
+                : <Item
+                  key={index}
+                  divideList={this.props.divideList}
+                  content={item}
+                  onItemEdit={this.props.onItemEdit}
+                  />
+            })}
           </tbody>
         </List>
       </div>

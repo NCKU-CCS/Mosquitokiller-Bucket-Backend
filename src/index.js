@@ -23,18 +23,18 @@ injectGlobal`
   }
 `
 
-
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div>
-        <Route exact path="/" component={Pages.Places}/>
-        <Route path="/lamps" component={Pages.Lamps}/>
-        <Route path="/mcc" component={Pages.Mccs}/>
-        <Route path="/states" component={Pages.States}/>
+        <Route exact path='/' component={Pages.Places} />
+        <Route path='/lamps' component={Pages.Lamps} />
+        <Route path='/mcc' component={Pages.Mccs} />
+        <Route path='/states' component={Pages.States} />
       </div>
     </ConnectedRouter>
   </Provider>,
-  document.getElementById('root'))
+  document.getElementById('root')
+)
 
 registerServiceWorker()

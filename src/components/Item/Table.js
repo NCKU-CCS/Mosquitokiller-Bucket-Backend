@@ -4,7 +4,7 @@ import styled from 'styled-components'
  * css constant
  */
 
-const columnWidth = '10rem';
+const columnWidth = '10rem'
 
 const columnStyled = `
   list-style: none;  
@@ -13,10 +13,10 @@ const columnStyled = `
   word-wrap: break-word;
 `
 
-/** 
- * 
+/**
+ *
  * Export Table Components
- * 
+ *
  */
 export const Row = styled.tr`
   display: flex;
@@ -33,7 +33,7 @@ export const HeadColumn = styled.th`
 `
 
 export const Column = styled.td.attrs({
-  align: props => props.type === 'string' ? 'left' : 'right'
+  align: props => (props.type === 'string' ? 'left' : 'right')
 })`
   ${columnStyled}
   text-align: ${props => props.align};

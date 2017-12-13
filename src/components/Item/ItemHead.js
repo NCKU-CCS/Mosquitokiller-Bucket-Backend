@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, HeadColumn, Value} from './Table'
+import {Row, HeadColumn, Value} from './Table'
 
 const ItemHead = ({heads}) => {
 

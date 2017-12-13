@@ -6,7 +6,7 @@ const ListGroup = styled.table`
   margin: 1rem auto;
 `
 
-const itemList = ({children}) => {
+const itemList = ({ children }) => {
   return (
     <section>
       <ListGroup>

@@ -7,7 +7,7 @@ const reduxInit = {
   reducers: {}
 }
 
-const Redux = Object.values(Props).reduce((prev, curr)=>{
+const Redux = Object.values(Props).reduce((prev, curr) => {
   const itemName = curr.route
   const itemId = curr.itemId
 

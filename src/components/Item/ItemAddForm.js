@@ -64,53 +64,54 @@ const SubmitButton = FuncButton.extend`
   }
 `
 
-
-const ItemAddForm = ({form, onFetchAddItem}) => {
+const ItemAddForm = ({ form, onFetchAddItem }) => {
   let formValue = {}
   return (
     <SectionAddForm>
       <FormRow>
-      {
-        Object.entries(form).map((value, index) => {
-          return (
-            (typeof(value[1]) === 'object')
-              // show multiple input
-              ? value[1].subLabels.map((subLabel, subIndex) => (
-                <FormColumn key={`${index}-${subIndex}`}>
-                  <InputGroup>
-                    <Label>{subLabel}</Label>
-                    <AddInput
-                      type={value[1].type} 
-                      defaultValue={null} 
-                      innerRef={(el)=>{
-                        formValue[value[0]] = formValue[value[0]] || []
-                        formValue[value[0]][subIndex] = el
-                      }} 
+        {Object.entries(form).map((value, index) => {
+          return typeof value[1] === 'object'
+            // show multiple input
+            ? value[1].subLabels.map((subLabel, subIndex) => (
+              <FormColumn key={`${index}-${subIndex}`}>
+                <InputGroup>
+                  <Label>{subLabel}</Label>
+                  <AddInput
+                    type={value[1].type}
+                    defaultValue={null}
+                    innerRef={el => {
+                      formValue[value[0]] = formValue[value[0]] || []
+                      formValue[value[0]][subIndex] = el
+                    }}
                     />
-                  </InputGroup>
-                </FormColumn>
+                </InputGroup>
+              </FormColumn>
               ))
-              // show normal input
-              : <FormColumn key={index}>
-                  <InputGroup>
-                    <Label>{value[0]}</Label>
-                    <AddInput
-                      type={value[1]} 
-                      defaultValue={null} 
-                      innerRef={(el)=>{formValue[value[0]] = el}} 
-                    />
-                  </InputGroup>
-                </FormColumn>
-          )
-        })
-      }
-      <SubmitColumn>
-        <SubmitButton onClick={()=>{
-          onFetchAddItem({...formValue})
-        }}>Submit</SubmitButton>
-      </SubmitColumn>
-    </FormRow>
-  </SectionAddForm>
+            // show normal input
+            : <FormColumn key={index}>
+              <InputGroup>
+                <Label>{value[0]}</Label>
+                <AddInput
+                  type={value[1]}
+                  defaultValue={null}
+                  innerRef={el => {
+                    formValue[value[0]] = el
+                  }}
+                  />
+              </InputGroup>
+            </FormColumn>
+        })}
+        <SubmitColumn>
+          <SubmitButton
+            onClick={() => {
+              onFetchAddItem({ ...formValue })
+            }}
+          >
+            Submit
+          </SubmitButton>
+        </SubmitColumn>
+      </FormRow>
+    </SectionAddForm>
   )
 }
 
