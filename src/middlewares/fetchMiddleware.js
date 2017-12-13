@@ -25,102 +25,109 @@ export default class APIController {
     if (payload) {
       content.body = JSON.stringify(payload)
     }
-    return await fetch(uri, content)
+    return fetch(uri, content)
   }
 
   //
   // GET All Items
   //
-  fetchItems = store => next => async action => {
-    if (action.type !== this.types.FETCH_LOAD) return next(action)
+  fetchItems (store) {
+    return next => async action => {
+      if (action.type !== this.types.FETCH_LOAD) return next(action)
+      try {
+        // send get request
+        const uri = `${BASE}${this.route}`
+        const response = await this._request(uri, 'GET')
 
-    try {
-      // send get request
-      const uri = `${BASE}${this.route}`
-      const response = await this._request(uri, 'GET')
-
-      if (response.status !== 200) {
-        const message = await response.json()
-        throw { ...message, status: response.status }
-      } else {
-        const itemList = await response.json()
-        const items = itemList.map(item => {
-          return Object.assign({}, item, { isEditing: false })
-        })
-        return action.cb(items, store.dispatch)
+        if (response.status !== 200) {
+          const message = await response.json()
+          throw { ...message, status: response.status }
+        } else {
+          const itemList = await response.json()
+          const items = itemList.map(item => {
+            return Object.assign({}, item, { isEditing: false })
+          })
+          return action.cb(items, store.dispatch)
+        }
+      } catch (error) {
+        console.log(error)
       }
-    } catch (error) {
-      console.log(error)
     }
   }
 
   //
   // POST NEW Item
   //
-  fetchAddItem = store => next => async action => {
-    if (action.type !== this.types.FETCH_CREATE) return next(action)
+  fetchAddItem (store) {
+    return next => async action => {
+      if (action.type !== this.types.FETCH_CREATE) return next(action)
 
-    try {
-      // get values from input element
-      const payload = getValueFromInput(action.payload)
+      try {
+        // get values from input element
+        const payload = getValueFromInput(action.payload)
 
-      // send post request
-      const uri = `${BASE}${this.route}`
-      const response = await this._request(uri, 'POST', payload)
+        // send post request
+        const uri = `${BASE}${this.route}`
+        const response = await this._request(uri, 'POST', payload)
 
-      // check response
-      const stateItem = await getItemFromResponse(response, 201)
-      return action.cb(stateItem, store.dispatch)
-    } catch (error) {
-      console.log(error)
+        // check response
+        const stateItem = await getItemFromResponse(response, 201)
+        return action.cb(stateItem, store.dispatch)
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 
   //
   // PUT OLD Item
   //
-  fetchUpdateItem = store => next => async action => {
-    if (action.type !== this.types.FETCH_UPDATE) return next(action)
+  fetchUpdateItem (store) {
+    return next => async action => {
+      if (action.type !== this.types.FETCH_UPDATE) return next(action)
 
-    try {
-      // get values from input element
-      const payload = getValueFromInput(action.payload)
+      try {
+        // get values from input element
+        const payload = getValueFromInput(action.payload)
 
-      // send put request
-      const uri = `${BASE}${this.route}${payload[this.id]}`
-      const response = await this._request(uri, 'PUT', payload)
+        // send put request
+        const uri = `${BASE}${this.route}${payload[this.id]}`
+        const response = await this._request(uri, 'PUT', payload)
 
-      // check response
-      const stateItem = await getItemFromResponse(response, 200)
-      return action.cb(stateItem, store.dispatch)
-    } catch (error) {
-      console.log(error)
+        // check response
+        const stateItem = await getItemFromResponse(response, 200)
+        return action.cb(stateItem, store.dispatch)
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 
   //
   // DELETE OLD Item
   //
-  fetchRemoveItem = store => next => async action => {
-    if (action.type !== this.types.FETCH_REMOVE) return next(action)
+  fetchRemoveItem (store) {
+    return next => async action => {
+      if (action.type !== this.types.FETCH_REMOVE) return next(action)
 
-    try {
-      // get value from input element
-      const itemId = action.payload
+      try {
+        // get value from input element
+        const itemId = action.payload
 
-      // send put request
-      const uri = `${BASE}${this.route}${itemId}`
-      const response = await this._request(uri, 'DELETE')
+        // send put request
+        const uri = `${BASE}${this.route}${itemId}`
+        const response = await this._request(uri, 'DELETE')
 
-      // check response
-      if (response.status !== 204) {
-        const message = await response.json()
-        throw { ...message, status: response.status }
-      } else {
-        return action.cb(itemId, store.dispatch)
+        // check response
+        if (response.status !== 204) {
+          const message = await response.json()
+          throw { ...message, status: response.status }
+        } else {
+          return action.cb(itemId, store.dispatch)
+        }
+      } catch (error) {
+        console.log(error)
       }
-    } catch (error) {
-      console.log(error)
     }
   }
 }
