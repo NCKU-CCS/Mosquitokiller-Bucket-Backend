@@ -5,7 +5,7 @@ import { FuncButton, AddInput } from './Table'
 const SectionAddForm = styled.section`
   position: relative;
   z-index: 1;
-  background-color: #fafbfb;
+  background-color: #e9e9e9;
   border: 1px solid #ccc;
 `
 

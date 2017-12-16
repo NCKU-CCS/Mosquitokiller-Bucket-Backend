@@ -1,7 +1,7 @@
 const BASE = 'http://localhost:3001/apis'
 
 const HEADERS = {
-  Accept: 'application/json',
+  'Accept': 'application/json',
   'Content-Type': 'application/json; charset=utf-8'
 }
 

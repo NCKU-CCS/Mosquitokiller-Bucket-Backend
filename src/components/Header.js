@@ -6,7 +6,7 @@ const Header = styled.header`
   position: relative;
   z-index: 2;
   width: 100%;
-  background-color: #252a2f;
+  background-color: #0a897a;
   // box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1);
 `
 
@@ -24,7 +24,7 @@ const NavItem = styled.li`
   text-align: center;
 `
 const StyledLink = styled(Link)`
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.9);
   text-decoration: none;
   &:hover {
     color: rgba(255,255,255,1);

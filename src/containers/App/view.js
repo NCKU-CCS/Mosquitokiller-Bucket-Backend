@@ -9,7 +9,7 @@ import ItemEdit from '../../components/Item/ItemEditForm'
 import ItemAdd from '../../components/Item/ItemAddForm'
 
 // Method
-import mapKeysToHeads from '../../utility/heads'
+import mapKeysToHeads from '../../utils/heads'
 
 class App extends Component {
   componentDidMount () {

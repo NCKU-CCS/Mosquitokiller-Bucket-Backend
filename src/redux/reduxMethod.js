@@ -56,15 +56,13 @@ export default class ReduxMethod {
       onFetchUpdateItem: payload => ({
         type: this.types.FETCH_UPDATE,
         payload,
-        cb: (response, dispatch) =>
-          dispatch(this.actions.onItemUpdate(response))
+        cb: (response, dispatch) => dispatch(this.actions.onItemUpdate(response))
       }),
 
       onFetchRemoveItem: payload => ({
         type: this.types.FETCH_REMOVE,
         payload,
-        cb: (response, dispatch) =>
-          dispatch(this.actions.onItemRemove(response))
+        cb: (response, dispatch) => dispatch(this.actions.onItemRemove(response))
       })
     }
     this.reducer = this.reducer.bind(this)
