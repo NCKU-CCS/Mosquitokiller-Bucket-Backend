@@ -12,7 +12,9 @@ export default class ReduxMethod {
       FETCH_LOAD: `${name}/FETCH_LOAD`,
       FETCH_CREATE: `${name}/FETCH_CREATE`,
       FETCH_UPDATE: `${name}/FETCH_UPDATE`,
-      FETCH_REMOVE: `${name}/FETCH_REMOVE`
+      FETCH_REMOVE: `${name}/FETCH_REMOVE`,
+      FETCH_CREATE_FAIL: `${name}/FETCH_CREATE_FAIL`,
+      FETCH_UPDATE_FAIL: `${name}/FETCH_UPDATE_FAIL`
     }
 
     // Action Creators
@@ -44,55 +46,67 @@ export default class ReduxMethod {
 
       onFetchLoadItems: () => ({
         type: this.types.FETCH_LOAD,
-        cb: (response, dispatch) => dispatch(this.actions.onInitData(response))
+        success: (response, dispatch) => dispatch(this.actions.onInitData(response))
       }),
 
       onFetchAddItem: payload => ({
         type: this.types.FETCH_CREATE,
         payload,
-        cb: (response, dispatch) => dispatch(this.actions.onItemAdd(response))
+        success: (response, dispatch) => dispatch(this.actions.onItemAdd(response)),
+        fail: (errorResponse, dispatch) => dispatch(this.actions.onFetchAddItemFail(errorResponse))
       }),
 
       onFetchUpdateItem: payload => ({
         type: this.types.FETCH_UPDATE,
         payload,
-        cb: (response, dispatch) => dispatch(this.actions.onItemUpdate(response))
+        success: (response, dispatch) => dispatch(this.actions.onItemUpdate(response)),
+        fail: (errorResponse, dispatch) => dispatch(this.actions.onFetchUpdateItemFail(errorResponse))
       }),
 
       onFetchRemoveItem: payload => ({
         type: this.types.FETCH_REMOVE,
         payload,
-        cb: (response, dispatch) => dispatch(this.actions.onItemRemove(response))
+        success: (response, dispatch) => dispatch(this.actions.onItemRemove(response))
+      }),
+
+      onFetchAddItemFail: payload => ({
+        type: this.types.FETCH_CREATE_FAIL,
+        payload
+      }),
+
+      onFetchUpdateItemFail: payload => ({
+        type: this.types.FETCH_UPDATE_FAIL,
+        payload
       })
     }
     this.reducer = this.reducer.bind(this)
   }
   // Reducer
-  reducer (state = [], action = {}) {
+  reducer (state = {}, action = {}) {
     switch (action.type) {
       case this.types.LOAD: {
-        return [...action.payload]
+        return {itemList: [...action.payload]}
       }
 
       case this.types.CREATE: {
-        return [action.payload, ...state]
+        return {itemList: [action.payload, ...state.itemList]}
       }
 
       case this.types.UPDATE: {
-        const newItems = [...state]
+        const newItems = [...state.itemList]
         const index = newItems.findIndex(
           item => item[this.Id] === action.payload[this.Id]
         )
 
-        if (index === -1) return newItems
+        if (index === -1) return {itemList: newItems}
 
         newItems[index] = action.payload
 
-        return newItems
+        return {itemList: newItems}
       }
 
       case this.types.REMOVE: {
-        const newItems = [...state]
+        const newItems = [...state.itemList]
         const index = newItems.findIndex(
           item => item[this.Id] === action.payload
         )
@@ -101,7 +115,16 @@ export default class ReduxMethod {
 
         newItems.splice(index, 1)
 
-        return newItems
+        return {itemList: newItems}
+      }
+
+      // Error Handling
+      case this.types.FETCH_CREATE_FAIL: {
+        return {...state, error: action.payload}
+      }
+
+      case this.types.FETCH_UPDATE_FAIL: {
+        return {...state, error: action.payload}
       }
 
       default:

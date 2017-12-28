@@ -4,9 +4,10 @@ import { connect } from 'react-redux'
 
 import App from './App/view'
 
+// store elements map to reducers of combineReducers
 export default (props, actions) => {
   const mapStateToProps = store => ({
-    itemList: store[props.route],
+    response: store[props.route],
     ...props
   })
   const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)

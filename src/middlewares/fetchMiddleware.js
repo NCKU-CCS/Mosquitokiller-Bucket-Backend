@@ -47,7 +47,7 @@ export default class APIController {
           const items = itemList.map(item => {
             return Object.assign({}, item, { isEditing: false })
           })
-          return action.cb(items, store.dispatch)
+          return action.success(items, store.dispatch)
         }
       } catch (error) {
         console.log(error)
@@ -72,9 +72,10 @@ export default class APIController {
 
         // check response
         const stateItem = await getItemFromResponse(response, 201)
-        return action.cb(stateItem, store.dispatch)
+        return action.success(stateItem, store.dispatch)
       } catch (error) {
         console.log(error)
+        return action.fail(error, store.dispatch)
       }
     }
   }
@@ -96,9 +97,10 @@ export default class APIController {
 
         // check response
         const stateItem = await getItemFromResponse(response, 200)
-        return action.cb(stateItem, store.dispatch)
+        return action.success(stateItem, store.dispatch)
       } catch (error) {
         console.log(error)
+        return action.fail(error, store.dispatch)
       }
     }
   }
@@ -123,7 +125,7 @@ export default class APIController {
           const message = await response.json()
           throw { ...message, status: response.status }
         } else {
-          return action.cb(itemId, store.dispatch)
+          return action.success(itemId, store.dispatch)
         }
       } catch (error) {
         console.log(error)

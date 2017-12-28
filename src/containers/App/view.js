@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   render () {
-    const itemList = this.props.itemList
+    const itemList = this.props.response.itemList || []
     const heads = itemList[0]
       ? Object.keys(itemList[0]).reduce(mapKeysToHeads, [])
       : []

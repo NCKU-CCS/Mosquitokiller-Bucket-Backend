@@ -12,11 +12,13 @@ export const history = createHistory()
 const routeMiddleware = routerMiddleware(history)
 
 // Reducers
+// import reducers contains [places, lamps, mcc, states]
 const reducer = combineReducers({
   ...reducers,
   router: routerReducer
 })
 
+// Production, const store = createStore(reducer)
 const store = createStore(
   reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
