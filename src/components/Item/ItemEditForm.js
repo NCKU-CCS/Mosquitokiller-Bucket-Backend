@@ -6,7 +6,8 @@ const ItemEdit = ({
   content,
   form,
   nonEditList,
-  onFetchUpdateItem
+  onFetchUpdateItem,
+  errorResponse
 }) => {
   let formValue = {}
   return (

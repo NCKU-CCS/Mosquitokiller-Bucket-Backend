@@ -27,6 +27,7 @@ class App extends Component {
         <ItemAdd
           form={this.props.postModel}
           onFetchAddItem={this.props.onFetchAddItem}
+          errorResponse={this.props.response.postError}
         />
         <List name={this.props.route}>
           <thead><ItemHead heads={heads} /></thead>
@@ -40,6 +41,7 @@ class App extends Component {
                   nonEditList={this.props.nonEditList}
                   content={item}
                   onFetchUpdateItem={this.props.onFetchUpdateItem}
+                  errorResponse={this.props.response.putError}
                   />
                 : <Item
                   key={index}

@@ -21,6 +21,7 @@ const FormRow = styled.ul`
 `
 
 const FormColumn = styled.li`
+  position: relative;
   display: inline-block;
   margin: 1rem;
   list-style: none;
@@ -64,7 +65,14 @@ const SubmitButton = FuncButton.extend`
   }
 `
 
-const ItemAddForm = ({ form, onFetchAddItem }) => {
+const ErrorMessageBox = styled.div`
+  position: absolute;
+  right: 10px;
+  color: red;
+`
+
+const ItemAddForm = ({ form, onFetchAddItem, errorResponse = {} }) => {
+  const errorMsg = errorResponse.errors
   let formValue = {}
   return (
     <SectionAddForm>
@@ -85,6 +93,10 @@ const ItemAddForm = ({ form, onFetchAddItem }) => {
                     }}
                     />
                 </InputGroup>
+                {
+                  (errorMsg && errorMsg[value[0]]) &&
+                  <ErrorMessageBox>{errorMsg[value[0]].msg}</ErrorMessageBox>
+                }
               </FormColumn>
               ))
             // show normal input
@@ -99,6 +111,10 @@ const ItemAddForm = ({ form, onFetchAddItem }) => {
                   }}
                   />
               </InputGroup>
+              {
+                (errorMsg && errorMsg[value[0]]) &&
+                <ErrorMessageBox>{errorMsg[value[0]].msg}</ErrorMessageBox>
+              }
             </FormColumn>
         })}
         <SubmitColumn>

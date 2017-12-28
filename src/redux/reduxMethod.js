@@ -120,11 +120,11 @@ export default class ReduxMethod {
 
       // Error Handling
       case this.types.FETCH_CREATE_FAIL: {
-        return {...state, error: action.payload}
+        return {...state, postError: action.payload}
       }
 
       case this.types.FETCH_UPDATE_FAIL: {
-        return {...state, error: action.payload}
+        return {...state, putError: action.payload}
       }
 
       default:

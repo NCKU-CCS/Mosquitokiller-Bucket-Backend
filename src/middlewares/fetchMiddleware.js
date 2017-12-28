@@ -74,7 +74,6 @@ export default class APIController {
         const stateItem = await getItemFromResponse(response, 201)
         return action.success(stateItem, store.dispatch)
       } catch (error) {
-        console.log(error)
         return action.fail(error, store.dispatch)
       }
     }
