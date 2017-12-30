@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FuncButton, AddInput } from './Table'
-import ErrorMessageBox from './errorMsg'
+import ErrorMessage from './errorMsg'
 
 const SectionAddForm = styled.section`
   position: relative;
@@ -88,7 +88,7 @@ const ItemAddForm = ({ form, onFetchAddItem, errorResponse = {} }) => {
                     />
                 </InputGroup>
                 {
-                  <ErrorMessageBox
+                  <ErrorMessage
                     errorResponse={errorResponse}
                     name={value[0]}
                   />
@@ -108,7 +108,7 @@ const ItemAddForm = ({ form, onFetchAddItem, errorResponse = {} }) => {
                   />
               </InputGroup>
               {
-                <ErrorMessageBox
+                <ErrorMessage
                   errorResponse={errorResponse}
                   name={value[0]}
                 />
