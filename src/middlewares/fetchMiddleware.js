@@ -145,6 +145,10 @@ const getValueFromInput = inputs => {
     // get array value or normal value
     if (inputs[current].length > 1) {
       prev[current] = inputs[current].map(input => input.value)
+      // remove this array value if contains empty string
+      if (prev[current].includes('')) {
+        delete prev[current]
+      }
     } else if (inputs[current].value) {
       prev[current] = inputs[current].value
     }
