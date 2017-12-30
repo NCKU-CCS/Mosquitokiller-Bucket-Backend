@@ -74,6 +74,7 @@ export default class APIController {
         const stateItem = await getItemFromResponse(response, 201)
         return action.success(stateItem, store.dispatch)
       } catch (error) {
+        console.log(error)
         return action.fail(error, store.dispatch)
       }
     }
@@ -142,9 +143,11 @@ export default class APIController {
 const getValueFromInput = inputs => {
   return Object.keys(inputs).reduce((prev, current) => {
     // get array value or normal value
-    prev[current] = inputs[current].length > 1
-      ? inputs[current].map(input => input.value)
-      : inputs[current].value || null
+    if (inputs[current].length > 1) {
+      prev[current] = inputs[current].map(input => input.value)
+    } else if (inputs[current].value) {
+      prev[current] = inputs[current].value
+    }
     return prev
   }, {})
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Row, Column, Value, FuncColumn, FuncButton, EditInput } from './Table'
+import { SingleErrorMessage } from './errorMsg'
 
 const ItemEdit = ({
   itemId,
@@ -7,7 +8,7 @@ const ItemEdit = ({
   form,
   nonEditList,
   onFetchUpdateItem,
-  errorResponse
+  errorResponse = {}
 }) => {
   let formValue = {}
   return (
@@ -57,6 +58,11 @@ const ItemEdit = ({
         >
           Send
         </FuncButton>
+        {
+          <SingleErrorMessage
+            errorResponse={errorResponse}
+          />
+        }
       </FuncColumn>
     </Row>
   )

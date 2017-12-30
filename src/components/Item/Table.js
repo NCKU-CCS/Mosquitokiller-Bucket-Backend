@@ -44,6 +44,7 @@ export const Value = styled.p`
 `
 
 export const FuncColumn = Column.extend`
+  position: relative;
   display: flex;
   text-align: center;
   align-items: center;

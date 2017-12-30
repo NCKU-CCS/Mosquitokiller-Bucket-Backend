@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FuncButton, AddInput } from './Table'
+import ErrorMessageBox from './errorMsg'
 
 const SectionAddForm = styled.section`
   position: relative;
@@ -65,14 +66,7 @@ const SubmitButton = FuncButton.extend`
   }
 `
 
-const ErrorMessageBox = styled.div`
-  position: absolute;
-  right: 10px;
-  color: red;
-`
-
 const ItemAddForm = ({ form, onFetchAddItem, errorResponse = {} }) => {
-  const errorMsg = errorResponse.errors
   let formValue = {}
   return (
     <SectionAddForm>
@@ -94,8 +88,10 @@ const ItemAddForm = ({ form, onFetchAddItem, errorResponse = {} }) => {
                     />
                 </InputGroup>
                 {
-                  (errorMsg && errorMsg[value[0]]) &&
-                  <ErrorMessageBox>{errorMsg[value[0]].msg}</ErrorMessageBox>
+                  <ErrorMessageBox
+                    errorResponse={errorResponse}
+                    name={value[0]}
+                  />
                 }
               </FormColumn>
               ))
@@ -112,8 +108,10 @@ const ItemAddForm = ({ form, onFetchAddItem, errorResponse = {} }) => {
                   />
               </InputGroup>
               {
-                (errorMsg && errorMsg[value[0]]) &&
-                <ErrorMessageBox>{errorMsg[value[0]].msg}</ErrorMessageBox>
+                <ErrorMessageBox
+                  errorResponse={errorResponse}
+                  name={value[0]}
+                />
               }
             </FormColumn>
         })}
