@@ -45,9 +45,11 @@ class App extends Component {
                   />
                 : <Item
                   key={index}
+                  itemId={this.props.itemId}
                   divideList={this.props.divideList}
                   content={item}
                   onItemEdit={this.props.onItemEdit}
+                  onFetchRemoveItem={this.props.onFetchRemoveItem}
                   />
             })}
           </tbody>

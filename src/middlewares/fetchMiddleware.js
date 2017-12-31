@@ -45,7 +45,7 @@ export default class APIController {
         } else {
           const itemList = await response.json()
           const items = itemList.map(item => {
-            return Object.assign({}, item, { isEditing: false })
+            return Object.assign({}, {select: false}, item, { isEditing: false })
           })
           return action.success(items, store.dispatch)
         }
@@ -115,6 +115,7 @@ export default class APIController {
       try {
         // get value from input element
         const itemId = action.payload
+        console.log(itemId)
 
         // send put request
         const uri = `${BASE}${this.route}${itemId}`

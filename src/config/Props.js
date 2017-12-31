@@ -2,7 +2,7 @@ const placeProps = {
   route: 'places',
   itemId: 'place_id',
   divideList: [],
-  nonEditList: ['place_id', 'created_at', 'updated_at', 'isEditing'],
+  nonEditList: ['place_id', 'created_at', 'updated_at', 'select', 'isEditing'],
   postModel: {
     place_name: 'string',
     place_address: 'string',
@@ -20,6 +20,7 @@ const lampProps = {
     'lamp_hash_id',
     'created_at',
     'updated_at',
+    'select',
     'isEditing'
   ],
   postModel: {
@@ -47,6 +48,7 @@ const mccProps = {
     'rule_id',
     'created_at',
     'updated_at',
+    'select',
     'isEditing'
   ],
   postModel: {
@@ -58,7 +60,7 @@ const stateProps = {
   route: 'states',
   itemId: 'state_id',
   divideList: [],
-  nonEditList: ['state_id', 'created_at', 'updated_at', 'isEditing'],
+  nonEditList: ['state_id', 'created_at', 'updated_at', 'select', 'isEditing'],
   postModel: {
     lamp_id: 'string',
     lamp_state: 'number',

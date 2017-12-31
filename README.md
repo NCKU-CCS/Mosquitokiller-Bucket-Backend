@@ -10,7 +10,8 @@ A Admin Pages for [Bucket API](https://github.com/Sirius207/Bucket-API)
 1.0.0
 - [x] Load / Create / Update Data
 - [x] Display Fetch Error Message from response
-- [ ] Remove data
+- [x] Remove data
+- [ ] Logout
 
 ## Setup
 
