@@ -43,7 +43,9 @@ const ErrorMessage = ({errorResponse, name}) => {
 
 export const SingleErrorMessage = ({errorResponse}) => {
   return (
-    <NotifyBox>{errorResponse.error}</NotifyBox>
+    (errorResponse.error)
+      ? <NotifyBox>{errorResponse.error}</NotifyBox>
+      : null
   )
 }
 
