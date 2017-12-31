@@ -115,7 +115,6 @@ export default class APIController {
       try {
         // get value from input element
         const itemId = action.payload
-        console.log(itemId)
 
         // send put request
         const uri = `${BASE}${this.route}${itemId}`

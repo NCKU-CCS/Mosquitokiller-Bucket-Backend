@@ -58,11 +58,7 @@ const ItemEdit = ({
         >
           Send
         </FuncButton>
-        {
-          <SingleErrorMessage
-            errorResponse={errorResponse}
-          />
-        }
+        <SingleErrorMessage errorResponse={errorResponse} />
       </FuncColumn>
     </Row>
   )

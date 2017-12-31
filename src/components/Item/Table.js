@@ -55,6 +55,7 @@ export const FuncColumn = Column.extend`
 export const FuncButton = styled.button`
   padding: 1px 15px;
   cursor: pointer;
+  outline: none;
   border-radius: 10px;
   border: 1px solid rgba(27,31,35,0.2);
   background-image: linear-gradient(-180deg, #fafbfc 0%, #eff3f6 90%);
