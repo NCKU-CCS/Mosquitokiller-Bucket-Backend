@@ -14,7 +14,8 @@ export default class ReduxMethod {
       FETCH_UPDATE: `${name}/FETCH_UPDATE`,
       FETCH_REMOVE: `${name}/FETCH_REMOVE`,
       FETCH_CREATE_FAIL: `${name}/FETCH_CREATE_FAIL`,
-      FETCH_UPDATE_FAIL: `${name}/FETCH_UPDATE_FAIL`
+      FETCH_UPDATE_FAIL: `${name}/FETCH_UPDATE_FAIL`,
+      FETCH_REMOVE_FAIL: `${name}/FETCH_REMOVE_FAIL`
     }
 
     // Action Creators
@@ -66,7 +67,8 @@ export default class ReduxMethod {
       onFetchRemoveItem: payload => ({
         type: this.types.FETCH_REMOVE,
         payload,
-        success: (response, dispatch) => dispatch(this.actions.onItemRemove(response))
+        success: (response, dispatch) => dispatch(this.actions.onItemRemove(response)),
+        fail: (errorResponse, dispatch) => dispatch(this.actions.onFetchRemoveItemFail(errorResponse))
       }),
 
       onFetchAddItemFail: payload => ({
@@ -76,6 +78,11 @@ export default class ReduxMethod {
 
       onFetchUpdateItemFail: payload => ({
         type: this.types.FETCH_UPDATE_FAIL,
+        payload
+      }),
+
+      onFetchRemoveItemFail: payload => ({
+        type: this.types.FETCH_REMOVE_FAIL,
         payload
       })
     }
@@ -125,6 +132,10 @@ export default class ReduxMethod {
 
       case this.types.FETCH_UPDATE_FAIL: {
         return {...state, putError: action.payload}
+      }
+
+      case this.types.FETCH_REMOVE_FAIL: {
+        return {...state, deleteError: action.payload}
       }
 
       default:

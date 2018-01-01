@@ -1,14 +1,18 @@
 import React from 'react'
 import { Row, Column, Value, FuncColumn, FuncButton } from './Table'
 import RemoveCheckBox from './RemoveCheckBox'
+import { SingleErrorMessage } from './errorMsg'
 
 const dataColumn = (index, value) => (
   <Column key={index} type={typeof value}><Value>{value}</Value></Column>
 )
 
-const Item = ({ itemId, divideList, content, onItemEdit, onFetchRemoveItem }) => (
+const Item = ({ itemId, divideList, content, onItemEdit, onFetchRemoveItem, errorResponse = {} }) => (
   <Row>
-    <FuncColumn><RemoveCheckBox id={content[itemId]} onFetchRemoveItem={onFetchRemoveItem} /></FuncColumn>
+    <FuncColumn>
+      <RemoveCheckBox id={content[itemId]} onFetchRemoveItem={onFetchRemoveItem} />
+      <SingleErrorMessage currentId={content[itemId]} errorResponse={errorResponse} />
+    </FuncColumn>
     {/* value[0] = key (column name), value[1] = value (column value) */}
     {Object.entries(content).map((value, index) => {
       return typeof value[1] === 'boolean'

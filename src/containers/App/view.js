@@ -50,6 +50,7 @@ class App extends Component {
                   content={item}
                   onItemEdit={this.props.onItemEdit}
                   onFetchRemoveItem={this.props.onFetchRemoveItem}
+                  errorResponse={this.props.response.deleteError}
                   />
             })}
           </tbody>

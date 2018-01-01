@@ -41,9 +41,9 @@ const ErrorMessage = ({errorResponse, name}) => {
   )
 }
 
-export const SingleErrorMessage = ({errorResponse}) => {
+export const SingleErrorMessage = ({currentId, errorResponse}) => {
   return (
-    (errorResponse.error)
+    (errorResponse.error && (currentId === errorResponse.id))
       ? <NotifyBox>{errorResponse.error}</NotifyBox>
       : null
   )

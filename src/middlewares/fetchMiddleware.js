@@ -99,8 +99,8 @@ export default class APIController {
         const stateItem = await getItemFromResponse(response, 200)
         return action.success(stateItem, store.dispatch)
       } catch (error) {
-        console.log(error)
-        return action.fail(error, store.dispatch)
+        const id = action.payload[this.id].value
+        return action.fail({...error, id}, store.dispatch)
       }
     }
   }
@@ -128,7 +128,8 @@ export default class APIController {
           return action.success(itemId, store.dispatch)
         }
       } catch (error) {
-        console.log(error)
+        const id = action.payload
+        return action.fail({...error, id}, store.dispatch)
       }
     }
   }
@@ -169,6 +170,6 @@ const getItemFromResponse = async (response, status = 200) => {
     throw { ...message, status: response.status }
   } else {
     const item = await response.json()
-    return Object.assign({}, item, { isEditing: false })
+    return Object.assign({}, { select: false }, item, { isEditing: false })
   }
 }
