@@ -31,6 +31,8 @@ ReactDOM.render(
         <Route path='/lamps' component={Pages.Lamps} />
         <Route path='/mcc' component={Pages.Mccs} />
         <Route path='/states' component={Pages.States} />
+        <Route path='/rules' component={Pages.Rules} />
+        <Route path='/comments' component={Pages.Comments} />
       </div>
     </ConnectedRouter>
   </Provider>,

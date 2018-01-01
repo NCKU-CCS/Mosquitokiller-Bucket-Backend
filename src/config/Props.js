@@ -71,11 +71,37 @@ const stateProps = {
   }
 }
 
+const ruleProps = {
+  route: 'rules',
+  itemId: 'rule_id',
+  divideList: [],
+  nonEditList: ['rule_id', 'created_at', 'updated_at', 'select', 'isEditing'],
+  postModel: {
+    timeline_upper_limit: 'number',
+    distance_lower_limit: 'number',
+    points_lower_limit: 'number',
+    counts_lower_limit: 'number'
+  }
+}
+
+const commentProps = {
+  route: 'comments',
+  itemId: 'comment_id',
+  divideList: [],
+  nonEditList: ['comment_id', 'lamp_id', 'comment_content', 'created_at', 'select', 'isEditing'],
+  postModel: {
+    lamp_id: 'string',
+    comment_content: 'string'
+  }
+}
+
 const Props = {
   Places: placeProps,
   Lamps: lampProps,
   Mccs: mccProps,
-  States: stateProps
+  States: stateProps,
+  Rules: ruleProps,
+  Comments: commentProps
 }
 
 export default Props

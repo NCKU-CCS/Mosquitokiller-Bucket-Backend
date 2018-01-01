@@ -39,6 +39,8 @@ export default () => {
         <NavItem><StyledLink to='/lamps'>Lamps</StyledLink></NavItem>
         <NavItem><StyledLink to='/mcc'>Mcc</StyledLink></NavItem>
         <NavItem><StyledLink to='/states'>States</StyledLink></NavItem>
+        <NavItem><StyledLink to='/rules'>Rules</StyledLink></NavItem>
+        <NavItem><StyledLink to='/comments'>Comments</StyledLink></NavItem>
       </Nav>
     </Header>
   )
