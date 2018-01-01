@@ -47,6 +47,7 @@ const Label = styled.span`
 `
 
 const SubmitColumn = styled.li`
+  position: relative;
   display: flex;
   text-align: center;
   align-items: center;
@@ -87,12 +88,10 @@ const ItemAddForm = ({ form, onFetchAddItem, errorResponse = {} }) => {
                     }}
                     />
                 </InputGroup>
-                {
-                  <ErrorMessage
-                    errorResponse={errorResponse}
-                    name={value[0]}
-                  />
-                }
+                <ErrorMessage
+                  errorResponse={errorResponse}
+                  name={value[0]}
+                />
               </FormColumn>
               ))
             // show normal input
@@ -107,12 +106,10 @@ const ItemAddForm = ({ form, onFetchAddItem, errorResponse = {} }) => {
                   }}
                   />
               </InputGroup>
-              {
-                <ErrorMessage
-                  errorResponse={errorResponse}
-                  name={value[0]}
-                />
-              }
+              <ErrorMessage
+                errorResponse={errorResponse}
+                name={value[0]}
+              />
             </FormColumn>
         })}
         <SubmitColumn>
@@ -123,6 +120,10 @@ const ItemAddForm = ({ form, onFetchAddItem, errorResponse = {} }) => {
           >
             Submit
           </SubmitButton>
+          <ErrorMessage
+            errorResponse={errorResponse}
+            name={'global'}
+          />
         </SubmitColumn>
       </FormRow>
     </SectionAddForm>

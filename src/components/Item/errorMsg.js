@@ -37,7 +37,9 @@ const ErrorMessage = ({errorResponse, name}) => {
   return (
     (errorMsg && errorMsg[name])
       ? <MessageBox>{errorMsg[name].msg}</MessageBox>
-      : null
+      : (errorResponse.detail && name === 'global')
+        ? <MessageBox>{errorResponse.detail}</MessageBox>
+        : null
   )
 }
 
