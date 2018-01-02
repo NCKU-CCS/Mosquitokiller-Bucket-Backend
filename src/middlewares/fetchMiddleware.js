@@ -135,8 +135,14 @@ export default class APIController {
   }
 }
 
+const getValueFromMultipleInput = (inputArray) => {
+  const arrayValue = inputArray.map(input => input.value)
+  return (arrayValue.includes('')) ? null : arrayValue
+}
+
 /**
  * Get values from form inputs for sending http request
+ * value = input.value
  *
  * @param   Object inputs: input dom from form
  * @return  Object
@@ -145,11 +151,7 @@ const getValueFromInput = inputs => {
   return Object.keys(inputs).reduce((prev, current) => {
     // get array value or normal value
     if (inputs[current].length > 1) {
-      prev[current] = inputs[current].map(input => input.value)
-      // remove this array value if contains empty string
-      if (prev[current].includes('')) {
-        delete prev[current]
-      }
+      prev[current] = getValueFromMultipleInput(inputs[current])
     } else if (inputs[current].value) {
       prev[current] = inputs[current].value
     }
