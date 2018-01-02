@@ -2,6 +2,9 @@
 
 A Admin Pages for [Bucket API](https://github.com/Sirius207/Bucket-API)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/ec02a8120541e34293d4/maintainability)](https://codeclimate.com/github/Sirius207/Bucket-Backend/maintainability)
+[![Known Vulnerabilities](https://snyk.io/test/github/sirius207/bucket-backend/badge.svg)](https://snyk.io/test/github/sirius207/bucket-backend)
+
 ## Changelog
 
 1.0.1
