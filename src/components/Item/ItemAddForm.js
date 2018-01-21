@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FuncButton, AddInput } from './Table'
+import { FuncButton, AddInput, getInputValue, getArrayInputValue } from './Table'
 import ErrorMessage from './errorMsg'
 
 const SectionAddForm = styled.section`
@@ -68,7 +68,9 @@ const SubmitButton = FuncButton.extend`
 `
 
 const ItemAddForm = ({ form, onFetchAddItem, errorResponse = {} }) => {
-  let formValue = {}
+  this.formValue = {}
+  this.getInputValue = getInputValue.bind(this)
+  this.getArrayInputValue = getArrayInputValue.bind(this)
   return (
     <SectionAddForm>
       <FormRow>
@@ -82,10 +84,9 @@ const ItemAddForm = ({ form, onFetchAddItem, errorResponse = {} }) => {
                   <AddInput
                     type={value[1].type}
                     defaultValue={null}
-                    innerRef={el => {
-                      formValue[value[0]] = formValue[value[0]] || []
-                      formValue[value[0]][subIndex] = el
-                    }}
+                    data-key={value[0]}
+                    data-index={subIndex}
+                    innerRef={this.getArrayInputValue}
                     />
                 </InputGroup>
                 <ErrorMessage
@@ -101,9 +102,8 @@ const ItemAddForm = ({ form, onFetchAddItem, errorResponse = {} }) => {
                 <AddInput
                   type={value[1]}
                   defaultValue={null}
-                  innerRef={el => {
-                    formValue[value[0]] = el
-                  }}
+                  data-key={value[0]}
+                  innerRef={this.getInputValue}
                   />
               </InputGroup>
               <ErrorMessage
@@ -115,7 +115,7 @@ const ItemAddForm = ({ form, onFetchAddItem, errorResponse = {} }) => {
         <SubmitColumn>
           <SubmitButton
             onClick={() => {
-              onFetchAddItem({ ...formValue })
+              onFetchAddItem({ ...this.formValue })
             }}
           >
             Submit

@@ -78,3 +78,19 @@ export const AddInput = styled.input`
   width: 7rem;
   border: 1px solid #ccc;
 `
+
+export function getInputValue (element) {
+  if (element) {
+    const key = element.dataset.key
+    this.formValue[key] = element
+  }
+}
+
+export function getArrayInputValue (element) {
+  if (element) {
+    const key = element.dataset.key
+    const subIndex = element.dataset.index
+    this.formValue[key] = this.formValue[key] || []
+    this.formValue[key][subIndex] = element
+  }
+}

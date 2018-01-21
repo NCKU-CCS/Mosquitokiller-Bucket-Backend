@@ -1,5 +1,8 @@
 import React from 'react'
-import { Row, Column, Value, FuncColumn, FuncButton, EditInput } from './Table'
+import {
+  Row, Column, Value, FuncColumn, FuncButton, EditInput,
+  getInputValue, getArrayInputValue
+} from './Table'
 import { SingleErrorMessage } from './errorMsg'
 
 const ItemEdit = ({
@@ -10,7 +13,9 @@ const ItemEdit = ({
   onFetchUpdateItem,
   errorResponse = {}
 }) => {
-  let formValue = {}
+  this.formValue = {}
+  this.getInputValue = getInputValue.bind(this)
+  this.getArrayInputValue = getArrayInputValue.bind(this)
   return (
     <Row>
       {Object.entries(content).map((value, index) => {
@@ -28,10 +33,9 @@ const ItemEdit = ({
                   <EditInput
                     type={form[value[0]].type}
                     defaultValue={subValue}
-                    innerRef={el => {
-                      formValue[value[0]] = formValue[value[0]] || []
-                      formValue[value[0]][subIndex] = el
-                    }}
+                    data-key={value[0]}
+                    data-index={subIndex}
+                    innerRef={this.getArrayInputValue}
                     />
                 </Column>
                 ))
@@ -40,9 +44,8 @@ const ItemEdit = ({
                 <EditInput
                   type={form[value[0]]}
                   defaultValue={value[1]}
-                  innerRef={el => {
-                    formValue[value[0]] = el
-                  }}
+                  data-key={value[0]}
+                  innerRef={this.getInputValue}
                   />
               </Column>
       })}
@@ -52,7 +55,7 @@ const ItemEdit = ({
           onClick={() => {
             onFetchUpdateItem({
               [itemId]: { value: content[itemId] },
-              ...formValue
+              ...this.formValue
             })
           }}
         >
