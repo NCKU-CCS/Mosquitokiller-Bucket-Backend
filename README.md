@@ -4,6 +4,7 @@ A Admin Pages for [Bucket API](https://github.com/Sirius207/Bucket-API)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/ec02a8120541e34293d4/maintainability)](https://codeclimate.com/github/Sirius207/Bucket-Backend/maintainability)
 [![Known Vulnerabilities](https://snyk.io/test/github/sirius207/bucket-backend/badge.svg)](https://snyk.io/test/github/sirius207/bucket-backend)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FSirius207%2FBucket-Backend.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FSirius207%2FBucket-Backend?ref=badge_shield)
 
 ## Changelog
 
@@ -37,3 +38,7 @@ $ npm start // Remember you need to run Bucket API at localhost:3001 first.
 ```
 $ npm build
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FSirius207%2FBucket-Backend.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FSirius207%2FBucket-Backend?ref=badge_large)
