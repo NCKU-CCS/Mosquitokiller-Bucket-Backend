@@ -35,12 +35,12 @@ export default () => {
   return (
     <Header className='App-header'>
       <Nav>
-        <NavItem><StyledLink to='/'>Places</StyledLink></NavItem>
-        <NavItem><StyledLink to='/lamps'>Lamps</StyledLink></NavItem>
-        <NavItem><StyledLink to='/mcc'>Mcc</StyledLink></NavItem>
-        <NavItem><StyledLink to='/states'>States</StyledLink></NavItem>
-        <NavItem><StyledLink to='/rules'>Rules</StyledLink></NavItem>
-        <NavItem><StyledLink to='/comments'>Comments</StyledLink></NavItem>
+        <NavItem><StyledLink to='/admin/places'>Places</StyledLink></NavItem>
+        <NavItem><StyledLink to='/admin/lamps'>Lamps</StyledLink></NavItem>
+        <NavItem><StyledLink to='/admin/mcc'>Mcc</StyledLink></NavItem>
+        <NavItem><StyledLink to='/admin/states'>States</StyledLink></NavItem>
+        <NavItem><StyledLink to='/admin/rules'>Rules</StyledLink></NavItem>
+        <NavItem><StyledLink to='/admin/comments'>Comments</StyledLink></NavItem>
       </Nav>
     </Header>
   )

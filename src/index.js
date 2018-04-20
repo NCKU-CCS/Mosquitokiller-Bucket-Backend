@@ -27,12 +27,12 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div>
-        <Route exact path='/' component={Pages.Places} />
-        <Route path='/lamps' component={Pages.Lamps} />
-        <Route path='/mcc' component={Pages.Mccs} />
-        <Route path='/states' component={Pages.States} />
-        <Route path='/rules' component={Pages.Rules} />
-        <Route path='/comments' component={Pages.Comments} />
+        <Route exact path='/admin/places' component={Pages.Places} />
+        <Route path='/admin/lamps' component={Pages.Lamps} />
+        <Route path='/admin/mcc' component={Pages.Mccs} />
+        <Route path='/admin/states' component={Pages.States} />
+        <Route path='/admin/rules' component={Pages.Rules} />
+        <Route path='/admin/comments' component={Pages.Comments} />
       </div>
     </ConnectedRouter>
   </Provider>,
