@@ -27,7 +27,8 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div>
-        <Route exact path='/admin/places' component={Pages.Places} />
+        <Route exact path='/' component={Pages.Places} />
+        <Route path='/admin/places' component={Pages.Places} />
         <Route path='/admin/lamps' component={Pages.Lamps} />
         <Route path='/admin/mcc' component={Pages.Mccs} />
         <Route path='/admin/states' component={Pages.States} />
